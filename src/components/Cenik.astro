@@ -1,5 +1,5 @@
 ---
-import { PRICE_START, PRICE_PROFI, CALLS_START, CALLS_PROFI } from '../config.mjs';
+import { PRICE_START, PRICE_PROFI, CALLS_START, CALLS_PROFI, CONTACT_EMAIL } from '../config.mjs';
 
 // české formátování: 1 990 (nezlomitelná mezera)
 const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
@@ -38,10 +38,10 @@ const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
 			<p class="tarif-cena tarif-cena--text"><strong>Cena dohodou</strong></p>
 			<ul>
 				<li>Pro síť servisů a vyšší objemy</li>
-				<li>Napište nám a domluvíme se</li>
+				<li><a href={`mailto:${CONTACT_EMAIL}`}>Napište nám a domluvíme se</a></li>
 			</ul>
 		</div>
 	</div>
 
-	<p class="cenik-note">Ceny jsou konečné, nejsme plátci DPH. Když vám balíček vyčerpáte, asistent se nevypne. Doúčtujeme přeplatek a nikdy nezaplatíte víc než cenu vyššího tarifu.</p>
+	<p class="cenik-note">Ceny jsou konečné, nejsme plátci DPH. Když balíček vyčerpáte, asistent se nevypne. Hovory navíc doúčtujeme a nikdy nezaplatíte víc než cenu vyššího tarifu.</p>
 </section>

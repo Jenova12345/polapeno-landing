@@ -441,6 +441,10 @@ h3 {
   line-height: 1.5;
 }
 
+.tarif a {
+  color: inherit;
+}
+
 /* Profi: odlišený jen tmavým pozadím; na mobilu první */
 .tarif--profi {
   order: -1;
