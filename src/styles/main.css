@@ -480,3 +480,34 @@ h3 {
     padding-inline: 2.5rem;
   }
 }
+
+/* §5 FAQ */
+.faq {
+  padding-block: 3rem;
+}
+
+.faq h2 {
+  margin-bottom: 1.5rem;
+  font-weight: var(--fw-black);
+}
+
+.faq-list {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 44rem; /* ~700 px */
+  font-size: 1rem;
+}
+
+.faq-list dt {
+  font-weight: var(--fw-bold);
+}
+
+.faq-list dd {
+  margin: 0.25rem 0 0;
+}
+
+@media (min-width: 640px) {
+  .faq-list {
+    font-size: var(--fs-body);
+  }
+}
