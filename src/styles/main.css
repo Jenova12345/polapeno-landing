@@ -243,7 +243,7 @@ h3 {
 .btn {
   display: inline-block;
   padding: 0.875rem 1.5rem;
-  border: 2px solid var(--paper);
+  border: 2px solid currentColor;
   font-weight: var(--fw-bold);
   text-decoration: none;
 }
@@ -255,7 +255,7 @@ h3 {
 }
 
 .btn--secondary {
-  color: var(--paper);
+  color: inherit; /* papír na tmavé sekci, inkoust na světlé */
 }
 
 .note {
@@ -297,5 +297,46 @@ h3 {
     background: url('/img/hero-sketch.jpg') right center / contain no-repeat;
     opacity: 0.2;
     pointer-events: none;
+  }
+}
+
+/* §2 Tři možnosti */
+.tri-moznosti {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.tri-moznosti h2 {
+  max-width: 28ch;
+  font-weight: var(--fw-black);
+  text-wrap: balance;
+}
+
+.moznosti {
+  display: grid;
+  gap: 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.moznosti h3 {
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-bold);
+}
+
+.moznosti-zaver {
+  max-width: 40ch;
+  font-size: var(--fs-lead);
+}
+
+/* sloupce nestejně široké podle délky textu, horní hrana zarovnaná */
+@media (min-width: 900px) {
+  .moznosti {
+    grid-template-columns: 1.1fr 1.2fr 0.9fr;
+    align-items: start;
+    gap: 3rem;
   }
 }

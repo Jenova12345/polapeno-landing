@@ -1,3 +1,26 @@
-<section id="tri-moznosti" class="section">
-	<h2>Tři možnosti</h2>
+---
+import { PRICE_START, PORTAL_URL, CTA_SECONDARY } from '../config.mjs';
+---
+
+<section id="tri-moznosti" class="section tri-moznosti">
+	<h2>Když zvoní telefon a vy máte ruce v motoru, máte tři možnosti. Každá vás něco stojí.</h2>
+
+	<ul class="moznosti">
+		<li>
+			<h3>Utřete si ruce a zvednete to</h3>
+			<p>Přerušená práce, umaštěný telefon. A půlka hovorů jsou stejně obchodníci s pneumatikami.</p>
+		</li>
+		<li>
+			<h3>Necháte to zvonit</h3>
+			<p>Většina lidí nenechá vzkaz. Zavolají dalšímu servisu v mapě a vy se to nikdy nedozvíte.</p>
+		</li>
+		<li>
+			<h3>Vezmete si někoho na telefon</h3>
+			<p>Mzda chodí každý měsíc, i ve dnech, kdy zavolají tři lidi.</p>
+		</li>
+	</ul>
+
+	<p class="moznosti-zaver">Asistent stojí od {PRICE_START} Kč měsíčně. Jedna zachycená výměna rozvodů ho zaplatí na rok dopředu.</p>
+
+	<a class="btn btn--secondary" href={PORTAL_URL}>{CTA_SECONDARY}</a>
 </section>
