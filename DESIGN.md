@@ -131,9 +131,6 @@ nebo akcentu. Kresby se animují při scrollu — jednorázový nábíh (fade + 
 
 ### Ilustrace
 
-**Přístup:** 1–2 jednoduché AI ilustrace, černobílý sketch styl (pero na
-papíře, ne digitální ilustrace). Jen v heru a případně v závěrečném CTA.
-
 **Pravidla:**
 
 - Pokud ilustrace nevypadá konzistentně se zbytkem stránky, jde pryč.
@@ -145,11 +142,6 @@ papíře, ne digitální ilustrace). Jen v heru a případně v závěrečném C
   generují externě a vkládají jako obrázky.
 - Ilustrace se používají jen na sekcích s tmavým pozadím.
 
-### Video
-
-Video pozadí v heru zůstává — funguje a je autentické. Žádná nová videa
-se nepřidávají, pokud nejsou natočená.
-
 ---
 
 ## 5. Struktura stránky
@@ -159,7 +151,7 @@ být nikdy.
 
 | §  | Název                       | Podklad        | Účel                                                |
 |----|-----------------------------|----------------|-----------------------------------------------------|
-| 1  | Hero                        | Tmavý + video  | Hook — problém + řešení + demo číslo (zavolejte si) |
+| 1  | Hero                        | Tmavý + ilustrace | Hook — problém + řešení + demo číslo (zavolejte si) |
 | 2  | Tři možnosti                | Světlý (papír) | Proč dosavadní řešení nefungují                     |
 | 3  | Nastavíte to za odpoledne   | Světlý (papír) | Jak to funguje — zbavit obav z komplikovanosti      |
 | 4  | Ceník                       | Světlý (papír) | Kolik to stojí — transparentní, bez triků           |
