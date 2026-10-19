@@ -2,9 +2,10 @@
 import '../styles/main.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_NAME, SITE_TAGLINE } from '../config.mjs';
+import { SITE_NAME, SITE_TAGLINE, PRICE_START } from '../config.mjs';
 
 const title = `${SITE_NAME} — ${SITE_TAGLINE}`;
+const description = `Polapeno zvedne telefon, když jste pod autem. Telefonní asistent pro autoservisy od ${PRICE_START} Kč měsíčně.`;
 ---
 
 <!doctype html>
@@ -15,6 +16,7 @@ const title = `${SITE_NAME} — ${SITE_TAGLINE}`;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<title>{title}</title>
+		<meta name="description" content={description} />
 		<meta property="og:title" content={title} />
 	</head>
 	<body>

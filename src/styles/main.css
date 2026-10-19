@@ -178,3 +178,106 @@ h3 {
 .footer-links a {
   color: var(--ink);
 }
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.hero h1 {
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-claim {
+  font-size: var(--fs-lead);
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+  font-weight: var(--fw-bold);
+}
+
+.flow-num {
+  margin-right: 0.5rem;
+  font-weight: var(--fw-black);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.hero-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.hero-demo-number {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  color: var(--paper);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid var(--paper);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff; /* bílá kvůli kontrastu: --paper na akcentu jen 4,4 : 1 */
+}
+
+.btn--secondary {
+  color: var(--paper);
+}
+
+.note {
+  font-size: var(--fs-small);
+}
+
+@media (min-width: 640px) {
+  .flow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .flow li:not(:last-child)::after {
+    content: '→';
+    content: '→' / '';
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: calc(100svh - 5rem);
+  }
+}

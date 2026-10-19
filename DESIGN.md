@@ -174,6 +174,7 @@ a zůstane jen CTA na portál.
 - V textovém logu v navigaci.
 - V page title a og:title.
 - V meta description.
+- V patičce stránky.
 - Nikde jinde na stránce se název služby neomílá — stránka mluví o tom,
   co služba dělá, ne jak se jmenuje.
 
