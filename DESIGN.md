@@ -153,7 +153,7 @@ být nikdy.
 |----|-----------------------------|----------------|-----------------------------------------------------|
 | 1  | Hero                        | Tmavý + ilustrace | Hook — problém + řešení + demo číslo (zavolejte si) |
 | 2  | Tři možnosti                | Světlý (papír) | Proč dosavadní řešení nefungují                     |
-| 3  | Nastavíte to za odpoledne   | Světlý (papír) | Jak to funguje — zbavit obav z komplikovanosti      |
+| 3  | Nastavíte to za odpoledne   | Tmavý          | Jak to funguje — zbavit obav z komplikovanosti      |
 | 4  | Ceník                       | Světlý (papír) | Kolik to stojí — transparentní, bez triků           |
 | 5  | FAQ                         | Světlý (papír) | Zbavit posledních pochybností                       |
 | 6  | Závěrečné CTA               | Tmavý          | Poslední výzva — Od X Kč, bez smlouvy, zrušíte kdykoliv |
