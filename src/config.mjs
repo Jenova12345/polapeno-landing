@@ -8,3 +8,5 @@ export const PRICE_START = 890;
 export const PRICE_PROFI = 1990;
 export const CTA_PRIMARY = 'Zavolejte si asistenta';
 export const CTA_SECONDARY = 'Spustit u sebe';
+export const CALLS_START = 100;
+export const CALLS_PROFI = 400;

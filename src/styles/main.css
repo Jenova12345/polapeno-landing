@@ -396,3 +396,83 @@ h3 {
     gap: 4rem;
   }
 }
+
+/* §4 Ceník */
+.cenik {
+  padding-block: 2.5rem;
+}
+
+.cenik h2 {
+  margin-bottom: 1.5rem;
+  font-weight: var(--fw-black);
+}
+
+.tarify {
+  display: grid;
+}
+
+.tarif {
+  padding: 1.5rem 0;
+}
+
+.tarif h3 {
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-bold);
+}
+
+.tarif-cena {
+  margin-bottom: 0.75rem;
+  line-height: var(--lh-heading);
+}
+
+.tarif-cena strong {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+}
+
+/* „Cena dohodou“ není číslo, nemusí mít velikost ceny */
+.tarif-cena--text strong {
+  font-size: var(--fs-lead);
+}
+
+.tarif ul {
+  padding: 0;
+  list-style: none;
+  line-height: 1.5;
+}
+
+/* Profi: odlišený jen tmavým pozadím; na mobilu první */
+.tarif--profi {
+  order: -1;
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+  background: var(--dark-bg);
+  color: var(--paper);
+}
+
+.cenik-note {
+  max-width: 62ch;
+  margin-top: 1.5rem;
+  font-size: var(--fs-small);
+}
+
+@media (min-width: 900px) {
+  .tarify {
+    grid-template-columns: 1fr 1.3fr 1fr;
+    align-items: stretch;
+  }
+
+  .tarif {
+    padding: 1.5rem 2rem;
+  }
+
+  .tarif:first-child {
+    padding-left: 0;
+  }
+
+  .tarif--profi {
+    order: 0;
+    margin-inline: 0;
+    padding-inline: 2.5rem;
+  }
+}

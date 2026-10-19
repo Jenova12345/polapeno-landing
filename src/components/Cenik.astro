@@ -1,3 +1,47 @@
-<section id="cenik" class="section">
-	<h2>Ceník</h2>
+---
+import { PRICE_START, PRICE_PROFI, CALLS_START, CALLS_PROFI } from '../config.mjs';
+
+// české formátování: 1 990 (nezlomitelná mezera)
+const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
+---
+
+<section id="cenik" class="section cenik">
+	<h2>Ceny</h2>
+
+	<div class="tarify">
+		<div class="tarif">
+			<h3>Start</h3>
+			<p class="tarif-cena"><strong>{kc(PRICE_START)}&nbsp;Kč</strong> měsíčně</p>
+			<ul>
+				<li>{CALLS_START} hovorů měsíčně</li>
+				<li>Asistent v češtině</li>
+				<li>Zápis každého hovoru v portálu</li>
+				<li>Přiřazení zákazníků</li>
+			</ul>
+		</div>
+
+		<div class="tarif tarif--profi">
+			<h3>Profi</h3>
+			<p class="tarif-cena"><strong>{kc(PRICE_PROFI)}&nbsp;Kč</strong> měsíčně</p>
+			<ul>
+				<li>{CALLS_PROFI} hovorů měsíčně</li>
+				<li>Vše ze Startu</li>
+				<li>Vlastní naklonovaný hlas</li>
+				<li>SMS po urgentním hovoru</li>
+				<li>Přepojení na váš telefon</li>
+				<li>Neomezená historie hovorů</li>
+			</ul>
+		</div>
+
+		<div class="tarif">
+			<h3>Firemní</h3>
+			<p class="tarif-cena tarif-cena--text"><strong>Cena dohodou</strong></p>
+			<ul>
+				<li>Pro síť servisů a vyšší objemy</li>
+				<li>Napište nám a domluvíme se</li>
+			</ul>
+		</div>
+	</div>
+
+	<p class="cenik-note">Ceny jsou konečné, nejsme plátci DPH. Když vám balíček vyčerpáte, asistent se nevypne. Doúčtujeme přeplatek a nikdy nezaplatíte víc než cenu vyššího tarifu.</p>
 </section>
