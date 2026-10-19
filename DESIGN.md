@@ -141,7 +141,9 @@ papíře, ne digitální ilustrace). Jen v heru a případně v závěrečném C
 - Žádné stock ilustrace z jakékoli knihovny.
 - Žádné barevné AI ilustrace (křičí „generované").
 - Žádné ilustrace lidí s obličeji (uncanny valley u AI).
-- Maximum 2 ilustrace na celé stránce.
+- Maximum 4 ilustrace ve sketch chalk stylu na tmavém pozadí. Ilustrace se
+  generují externě a vkládají jako obrázky.
+- Ilustrace se používají jen na sekcích s tmavým pozadím.
 
 ### Video
 

@@ -281,3 +281,21 @@ h3 {
     min-height: calc(100svh - 5rem);
   }
 }
+
+/* Hero — ilustrace na pozadí (DESIGN.md §4) */
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (min-width: 768px) {
+  .hero::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 0 33%;
+    background: url('/img/hero-sketch.jpg') right center / contain no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
