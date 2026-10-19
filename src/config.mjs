@@ -1,0 +1,10 @@
+export const SITE_NAME = 'Polapeno';
+export const SITE_TAGLINE = 'Telefonní asistent pro autoservisy';
+export const PORTAL_URL = 'https://jenova-portal.netlify.app';
+export const CONTACT_EMAIL = 'info@polapeno.cz';
+export const DEMO_READY = false;
+export const DEMO_NUMBER = '+420 000 000 000';
+export const PRICE_START = 890;
+export const PRICE_PROFI = 1990;
+export const CTA_PRIMARY = 'Zavolejte si asistenta';
+export const CTA_SECONDARY = 'Spustit u sebe';

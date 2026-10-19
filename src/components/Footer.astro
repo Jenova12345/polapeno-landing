@@ -1,0 +1,11 @@
+---
+import { SITE_NAME, PORTAL_URL, CONTACT_EMAIL, CTA_SECONDARY } from '../config.mjs';
+---
+
+<footer class="footer">
+	<p class="footer-name">{SITE_NAME}</p>
+	<ul class="footer-links">
+		<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+		<li><a href={PORTAL_URL}>{CTA_SECONDARY}</a></li>
+	</ul>
+</footer>
