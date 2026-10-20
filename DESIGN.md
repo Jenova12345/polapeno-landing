@@ -149,6 +149,9 @@ nebo akcentu. Kresby se animují při scrollu — jednorázový nábíh (fade + 
 Sekce se střídají: tmavá a světlá plocha. Dvě stejné vedle sebe nesmí
 být nikdy.
 
+Výjimka: Dvě světlé sekce vedle sebe jsou povolené, pokud mají vizuálně
+odlišnou strukturu (např. ceník se sloupci vedle FAQ s textem).
+
 | §  | Název                       | Podklad        | Účel                                                |
 |----|-----------------------------|----------------|-----------------------------------------------------|
 | 1  | Hero                        | Tmavý + ilustrace | Hook — problém + řešení + demo číslo (zavolejte si) |
