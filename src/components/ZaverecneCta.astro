@@ -1,3 +1,10 @@
-<section id="zaverecne-cta" class="section section--dark">
-	<h2>Závěrečné CTA</h2>
+---
+import { PRICE_START, PORTAL_URL, CTA_SECONDARY } from '../config.mjs';
+---
+
+<section id="zaverecne-cta" class="section section--dark zaverecne-cta">
+	<h2>Zkuste to na měsíc</h2>
+	<p class="cta-podnadpis">Nastavení zabere odpoledne. A číslo měnit nemusíte.</p>
+	<p class="cta-doplnek">Od {PRICE_START} Kč měsíčně. Bez smlouvy, zrušíte kdykoliv.</p>
+	<a class="btn btn--primary" href={PORTAL_URL}>{CTA_SECONDARY}</a>
 </section>

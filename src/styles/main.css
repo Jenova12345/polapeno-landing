@@ -26,6 +26,7 @@
   /* Typografická škála — DESIGN.md §3; přesné hodnoty doladit s hotovým obsahem */
   --fs-hero: clamp(2.5rem, 1.6rem + 4.5vw, 5rem);
   --fs-h2: clamp(1.75rem, 1.4rem + 1.75vw, 2.75rem);
+  --fs-cta: clamp(2.25rem, 1.6rem + 3vw, 4rem); /* mezi h2 a hero */
   --fs-lead: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
   --fs-body: 1.125rem;
   --fs-small: 0.875rem; /* minimum 14 px */
@@ -509,5 +510,45 @@ h3 {
 @media (min-width: 640px) {
   .faq-list {
     font-size: var(--fs-body);
+  }
+}
+
+/* §6 Závěrečné CTA */
+.zaverecne-cta {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.zaverecne-cta h2 {
+  font-size: var(--fs-cta);
+  font-weight: var(--fw-black);
+}
+
+.cta-podnadpis {
+  font-size: var(--fs-lead);
+}
+
+.cta-doplnek {
+  font-weight: var(--fw-bold);
+}
+
+.zaverecne-cta .btn {
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .zaverecne-cta::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 0 33%;
+    background: url('/img/cta-sketch.jpg') right center / contain no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
   }
 }
