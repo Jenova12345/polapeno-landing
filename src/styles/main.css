@@ -269,12 +269,6 @@ h3 {
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
   }
-
-  .flow li:not(:last-child)::after {
-    content: '→';
-    content: '→' / '';
-    margin-left: 1rem;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -550,5 +544,116 @@ h3 {
     background: url('/img/cta-sketch.jpg') right center / contain no-repeat;
     opacity: 0.2;
     pointer-events: none;
+  }
+}
+
+/* Ruční kresby z rough.js (DESIGN.md §4) — SVG generované při buildu */
+.kresba {
+  position: absolute;
+  max-width: none;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.kresba path {
+  vector-effect: non-scaling-stroke; /* SVG se natahuje, tloušťka čáry ne */
+}
+
+.kresba--akcent {
+  stroke: var(--accent);
+}
+
+.podtrzeni,
+.zakrouzkovat {
+  position: relative;
+  white-space: nowrap;
+}
+
+.kresba--podtrzeni {
+  left: -2%;
+  top: 100%;
+  width: 104%;
+  height: 0.3em;
+  margin-top: -0.15em;
+}
+
+.kresba--kruh {
+  left: -0.3em;
+  top: -0.15em;
+  width: calc(100% + 0.6em);
+  height: calc(100% + 0.3em);
+}
+
+/* šipky jen tam, kde jsou kroky vedle sebe */
+.kresba--sipka {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .kresba--sipka {
+    position: static;
+    display: inline-block;
+    width: 2.5rem;
+    height: 1rem;
+    margin-left: 1rem;
+    vertical-align: middle;
+  }
+}
+
+/* Jednorázové dokreslení při vstupu do viewportu. Třídu .kresby-anim
+   přidá main.js, takže bez JS a s prefers-reduced-motion jsou kresby
+   vidět rovnou. --delka je délka čáry v px na obrazovce, změří ji main.js
+   (pathLength nejde kvůli non-scaling-stroke). Čárkování platí jen během
+   animace (fill-mode backwards), potom je čára zase celá. */
+.kresby-anim .kresba {
+  opacity: 0;
+}
+
+.kresby-anim .kresba--kresli {
+  opacity: 1;
+  animation: kresba-fade 0.3s ease-out backwards;
+}
+
+.kresby-anim .kresba--kresli path {
+  animation: kresba-draw 0.8s ease-out backwards;
+}
+
+/* šipka: nejdřív tah, pak hrot, dohromady ~0,8 s */
+.kresby-anim .kresba--kresli.kresba--sipka path:first-child {
+  animation-duration: 0.55s;
+}
+
+.kresby-anim .kresba--kresli.kresba--sipka path + path {
+  animation-duration: 0.25s;
+  animation-delay: 0.55s;
+}
+
+@keyframes kresba-fade {
+  from { opacity: 0; }
+}
+
+@keyframes kresba-draw {
+  from {
+    stroke-dasharray: var(--delka);
+    stroke-dashoffset: var(--delka);
+  }
+  to {
+    stroke-dasharray: var(--delka);
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kresby-anim .kresba {
+    opacity: 1;
+  }
+
+  .kresby-anim .kresba,
+  .kresby-anim .kresba path {
+    animation: none;
   }
 }

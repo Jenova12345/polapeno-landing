@@ -1,0 +1,55 @@
+---
+// Ruční kresba z rough.js (DESIGN.md §4). Cesty se generují při buildu,
+// do stránky jde hotové inline SVG: bez knihovny v prohlížeči a funguje bez JS.
+// Pevný seed = stejná kresba při každém buildu.
+import rough from 'roughjs';
+
+interface Props {
+	typ: 'podtrzeni' | 'kruh' | 'sipka';
+	seed: number;
+	akcent?: boolean;
+}
+
+const { typ, seed, akcent = false } = Astro.props;
+
+const gen = rough.generator();
+const styl = { roughness: 1.5, bowing: 1, strokeWidth: 2, seed, disableMultiStroke: true };
+
+const tvary = {
+	// mírně vlnitá jedna čára
+	podtrzeni: {
+		viewBox: '0 0 200 12',
+		kresby: [gen.curve([[2, 7], [70, 4], [135, 8], [198, 5]], styl)],
+	},
+	kruh: {
+		viewBox: '0 0 120 50',
+		kresby: [gen.ellipse(60, 25, 114, 44, { ...styl, strokeWidth: 2.5 })],
+	},
+	// krátký mírně zakřivený tah a hrot
+	sipka: {
+		viewBox: '0 0 40 16',
+		kresby: [
+			gen.curve([[2, 10], [18, 6], [36, 8]], styl),
+			gen.linearPath([[29, 2], [37, 8], [30, 14]], styl),
+		],
+	},
+};
+
+const { viewBox, kresby } = tvary[typ];
+const cesty = kresby
+	.flatMap((k) => gen.toPaths(k))
+	.map((p) => ({
+		d: p.d.replace(/-?\d+\.\d+/g, (n) => String(Math.round(+n * 10) / 10)),
+		sirka: p.strokeWidth,
+	}));
+---
+
+<svg
+	class:list={['kresba', `kresba--${typ}`, { 'kresba--akcent': akcent }]}
+	viewBox={viewBox}
+	preserveAspectRatio="none"
+	aria-hidden="true"
+	focusable="false"
+>
+	{cesty.map(({ d, sirka }) => <path d={d} stroke-width={sirka} />)}
+</svg>

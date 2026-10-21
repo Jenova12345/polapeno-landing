@@ -1,5 +1,6 @@
 ---
 import { PRICE_START, PORTAL_URL, CTA_SECONDARY } from '../config.mjs';
+import Kresba from './Kresba.astro';
 ---
 
 <section id="tri-moznosti" class="section tri-moznosti">
@@ -20,7 +21,7 @@ import { PRICE_START, PORTAL_URL, CTA_SECONDARY } from '../config.mjs';
 		</li>
 	</ul>
 
-	<p class="moznosti-zaver">Asistent stojí od {PRICE_START} Kč měsíčně. Jedna zachycená výměna rozvodů ho zaplatí na rok dopředu.</p>
+	<p class="moznosti-zaver">Asistent stojí <span class="podtrzeni">od {PRICE_START} Kč měsíčně<Kresba typ="podtrzeni" seed={5} akcent /></span>. Jedna zachycená výměna rozvodů ho zaplatí na rok dopředu.</p>
 
 	<a class="btn btn--secondary" href={PORTAL_URL}>{CTA_SECONDARY}</a>
 </section>

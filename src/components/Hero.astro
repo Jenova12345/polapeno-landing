@@ -8,6 +8,7 @@ import {
 	CTA_PRIMARY,
 	CTA_SECONDARY,
 } from '../config.mjs';
+import Kresba from './Kresba.astro';
 
 const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
 ---
@@ -18,8 +19,8 @@ const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
 	<p class="hero-claim">Od {PRICE_START} Kč měsíčně. Číslo si necháváte svoje.</p>
 
 	<ol class="flow">
-		<li><span class="flow-num" aria-hidden="true">1</span> Zákazník volá</li>
-		<li><span class="flow-num" aria-hidden="true">2</span> Asistent zvedne</li>
+		<li><span class="flow-num" aria-hidden="true">1</span> Zákazník volá<Kresba typ="sipka" seed={11} /></li>
+		<li><span class="flow-num" aria-hidden="true">2</span> Asistent zvedne<Kresba typ="sipka" seed={23} /></li>
 		<li><span class="flow-num" aria-hidden="true">3</span> Zápis v portálu</li>
 	</ol>
 
