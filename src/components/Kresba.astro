@@ -5,7 +5,7 @@
 import rough from 'roughjs';
 
 interface Props {
-	typ: 'podtrzeni' | 'kruh' | 'sipka';
+	typ: 'podtrzeni' | 'sipka';
 	seed: number;
 	akcent?: boolean;
 }
@@ -20,10 +20,6 @@ const tvary = {
 	podtrzeni: {
 		viewBox: '0 0 200 12',
 		kresby: [gen.curve([[2, 7], [70, 4], [135, 8], [198, 5]], styl)],
-	},
-	kruh: {
-		viewBox: '0 0 120 50',
-		kresby: [gen.ellipse(60, 25, 114, 44, { ...styl, strokeWidth: 2.5 })],
 	},
 	// krátký mírně zakřivený tah a hrot
 	sipka: {

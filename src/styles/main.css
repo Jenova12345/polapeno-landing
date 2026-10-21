@@ -567,8 +567,7 @@ h3 {
   stroke: var(--accent);
 }
 
-.podtrzeni,
-.zakrouzkovat {
+.podtrzeni {
   position: relative;
   white-space: nowrap;
 }
@@ -579,13 +578,6 @@ h3 {
   width: 104%;
   height: 0.3em;
   margin-top: -0.15em;
-}
-
-.kresba--kruh {
-  left: -0.3em;
-  top: -0.15em;
-  width: calc(100% + 0.6em);
-  height: calc(100% + 0.3em);
 }
 
 /* šipky jen tam, kde jsou kroky vedle sebe */

@@ -52,9 +52,9 @@ evokovat dílnu, papír, inkoust, ne startup dashboard.
 |-----------------|-----------|-------------------------------------------------------|
 | Papír           | `#f6f4ef` | Pozadí světlých sekcí. Teplý krém, ne bílý, ne šedý.  |
 | Inkoust         | `#1a1a2e` | Základní text. Tmavá teplá modř, ne čistá černá.      |
-| Akcent          | `#6c5ce7` | Indigo do fialova. Jen: primární CTA, eyebrow, focus ring, ::selection. Nikde jinde. |
+| Akcent          | `#6c5ce7` | Indigo do fialova. Jen: primární CTA, eyebrow, focus ring, ::selection a rough.js kresby. Nikde jinde. |
 | Tmavé pozadí    | `#1e1b2e` | Hero, závěrečné CTA. Tmavá s fialovým nádechem.       |
-| Kresby          | TBD       | Buď inkoust, nebo teplý hnědý tón. Rozhodne se v kontextu. |
+| Kresby          | akcent / papír | Na světlém pozadí akcent, na tmavém pozadí papír.     |
 
 **Zakázané barvy:** Červená. Zelená jen pro konkrétní význam (fajfka v ceníku).
 Žádné pestré barevné přechody.
@@ -110,7 +110,7 @@ Pokud prvek můžeš odstranit a stránka řekne to samé, nemá tam co dělat.
 Knihovna rough.js generuje linie s přirozenou nepravidelností, jako by je
 někdo nakreslil rukou. Nahrazuje původní skenované SVG kresby.
 
-**Kde použít (max 4–5 prvků na celé stránce):**
+**Kde použít (max 4 prvky na celé stránce):**
 
 - Podtržení pod klíčovým slovem nebo cenou (1–2 na stránku).
 - Kroužek kolem důležitého slova (max 1 na stránku).
@@ -126,8 +126,8 @@ někdo nakreslil rukou. Nahrazuje původní skenované SVG kresby.
 - Všude — pokud je rough.js na každém prvku, přestane být vidět.
 
 **Styl:** Jemný, jedna čára, ne přehnané „dětské" čmárání. Barva inkoustu
-nebo akcentu. Kresby se animují při scrollu — jednorázový nábíh (fade + draw),
-žádné opakování.
+nebo akcentu, na tmavém pozadí papír. Kresby se animují při scrollu —
+jednorázový nábíh (fade + draw), žádné opakování.
 
 ### Ilustrace
 
@@ -192,7 +192,8 @@ a zůstane jen CTA na portál.
 ## 7. Technika
 
 - **Astro (statický build).** Žádný React, žádný Vue, žádné JS komponenty.
-- Styly v jednom CSS souboru. JS v jednom souboru s jednou rAF smyčkou.
+- Styly v jednom CSS souboru. JS v jednom souboru: IntersectionObserver
+  spouští jednorázové CSS animace (dokreslení kreseb při vstupu do viewportu).
 - **rough.js** je jediná povolená knihovna.
 - Žádné další knihovny (GSAP, Lenis, Tailwind…) se nepřidávají.
 - Nasazení na Netlify. Nasazuje **jen Tomáš**, na výslovný pokyn.
