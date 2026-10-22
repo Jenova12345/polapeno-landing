@@ -1,8 +1,20 @@
 ---
-import { PRICE_START, PRICE_PROFI, CALLS_START, CALLS_PROFI, CONTACT_EMAIL } from '../config.mjs';
+import {
+	PRICE_START,
+	PRICE_PROFI,
+	CALLS_START,
+	CALLS_PROFI,
+	PRICE_EXTRA_START,
+	PRICE_EXTRA_PROFI,
+	PRICE_YEARLY_START,
+	CONTACT_EMAIL,
+} from '../config.mjs';
 
 // české formátování: 1 990 (nezlomitelná mezera)
 const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
+
+// kolik měsíců je při roční platbě zdarma (5 900 = 10 × 590 → 2)
+const mesicuZdarma = 12 - Math.round(PRICE_YEARLY_START / PRICE_START);
 ---
 
 <section id="cenik" class="section cenik">
@@ -13,10 +25,11 @@ const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
 			<h3>Start</h3>
 			<p class="tarif-cena"><strong>{kc(PRICE_START)}&nbsp;Kč</strong> měsíčně</p>
 			<ul>
-				<li>{CALLS_START} hovorů měsíčně</li>
-				<li>Asistent v češtině</li>
-				<li>Zápis každého hovoru v portálu</li>
-				<li>Přiřazení zákazníků</li>
+				<li>{CALLS_START} hovorů v ceně, každý další {PRICE_EXTRA_START}&nbsp;Kč</li>
+				<li>Portál s přehledem hovorů</li>
+				<li>Shrnutí e-mailem</li>
+				<li>Nahrávky hovorů</li>
+				<li>Označení urgentních hovorů</li>
 			</ul>
 		</div>
 
@@ -24,12 +37,11 @@ const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
 			<h3>Profi</h3>
 			<p class="tarif-cena"><strong>{kc(PRICE_PROFI)}&nbsp;Kč</strong> měsíčně</p>
 			<ul>
-				<li>{CALLS_PROFI} hovorů měsíčně</li>
+				<li>{CALLS_PROFI} hovorů v ceně, každý další {PRICE_EXTRA_PROFI}&nbsp;Kč</li>
 				<li>Vše ze Startu</li>
+				<li>SMS u urgentních hovorů</li>
 				<li>Vlastní naklonovaný hlas</li>
-				<li>SMS po urgentním hovoru</li>
-				<li>Přepojení na váš telefon</li>
-				<li>Neomezená historie hovorů</li>
+				<li>Rezervace (připravujeme)</li>
 			</ul>
 		</div>
 
@@ -37,11 +49,11 @@ const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
 			<h3>Firemní</h3>
 			<p class="tarif-cena tarif-cena--text"><strong>Cena dohodou</strong></p>
 			<ul>
-				<li>Pro síť servisů a vyšší objemy</li>
+				<li>Víc poboček nebo víc čísel</li>
 				<li><a href={`mailto:${CONTACT_EMAIL}`}>Napište nám a domluvíme se</a></li>
 			</ul>
 		</div>
 	</div>
 
-	<p class="cenik-note">Ceny jsou konečné, nejsme plátci DPH. Když balíček vyčerpáte, asistent se nevypne. Hovory navíc doúčtujeme a nikdy nezaplatíte víc než cenu vyššího tarifu.</p>
+	<p class="cenik-note">Ceny jsou konečné, DPH neplatíte. Spam a hovory kratší než 10 sekund se nepočítají. Při roční platbě jsou {mesicuZdarma} měsíce zdarma.</p>
 </section>
