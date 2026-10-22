@@ -3,10 +3,10 @@ import {
 	PRICE_START,
 	DEMO_READY,
 	DEMO_NUMBER,
-	PORTAL_URL,
+	PORTAL_START_URL,
 	CTA_PRIMARY,
 	CTA_SECONDARY,
-	TRIAL_DAYS,
+	TRIAL_MINUTES,
 } from '../config.mjs';
 
 const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
@@ -26,12 +26,12 @@ const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
 					<a class="btn btn--primary" href={demoTel}>{CTA_PRIMARY}</a>
 					<a class="hero-demo-number" href={demoTel}>{DEMO_NUMBER}</a>
 				</div>
-				<a class="btn btn--secondary" href={PORTAL_URL}>{CTA_SECONDARY}</a>
+				<a class="btn btn--secondary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
 			</>
 		) : (
-			<a class="btn btn--primary" href={PORTAL_URL}>{CTA_SECONDARY}</a>
+			<a class="btn btn--primary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
 		)}
 	</div>
 
-	<p class="note">{TRIAL_DAYS} dní zdarma. Bez zadání karty.</p>
+	<p class="note">{TRIAL_MINUTES} minut volání zdarma. Bez zadání karty.</p>
 </section>

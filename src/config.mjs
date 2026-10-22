@@ -1,18 +1,28 @@
 export const SITE_NAME = 'Polapeno';
 export const SITE_TAGLINE = 'Telefonní asistent pro autoservisy';
-export const PORTAL_URL = 'https://jenova-portal.netlify.app';
+export const PORTAL_START_URL = 'https://app.polapeno.cz/start';
+export const PORTAL_LOGIN_URL = 'https://app.polapeno.cz/login';
 export const CONTACT_EMAIL = 'info@polapeno.cz';
 export const DEMO_READY = false;
 export const DEMO_NUMBER = '+420 000 000 000';
 export const PRICE_START = 590;
 export const PRICE_PROFI = 1490;
 export const CTA_PRIMARY = 'Zavolejte si asistenta';
-export const CTA_SECONDARY = 'Spustit u sebe';
+export const CTA_SECONDARY = 'Vyzkoušet zdarma';
 export const CALLS_START = 60;
 export const CALLS_PROFI = 200;
 export const PRICE_EXTRA_START = 9;
 export const PRICE_EXTRA_PROFI = 7;
 export const PRICE_YEARLY_START = 5900;
 export const PRICE_YEARLY_PROFI = 14900;
-export const TRIAL_DAYS = 14;
-export const TRIAL_CALLS = 25;
+export const TRIAL_MINUTES = 5;
+
+// Právní dokumenty: na landing page jen cesta, Netlify přesměruje
+// na stejnou cestu v portálu (_redirects se generuje při buildu).
+export const LEGAL_PAGES = [
+	{ path: '/soukromi', label: 'Zásady ochrany osobních údajů' },
+	{ path: '/podminky', label: 'Obchodní podmínky' },
+	{ path: '/zpracovatelska-smlouva', label: 'Zpracovatelská smlouva' },
+	{ path: '/cookies', label: 'Cookies' },
+	{ path: '/zpracovatele', label: 'Zpracovatelé' },
+];

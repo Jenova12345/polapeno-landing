@@ -133,12 +133,36 @@ h3 {
   text-decoration: none;
 }
 
+.nav-odkazy {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-login {
+  color: var(--ink);
+  text-decoration: none;
+}
+
 .nav-cta {
   padding: 0.5rem 1rem;
   border: 2px solid var(--ink);
   font-weight: var(--fw-bold);
   color: var(--ink);
   text-decoration: none;
+  white-space: nowrap;
+}
+
+/* na úzkém displeji se logo, Přihlásit a CTA musí vejít na jeden řádek */
+@media (max-width: 479px) {
+  .nav-odkazy {
+    gap: 0.75rem;
+    font-size: var(--fs-small);
+  }
+
+  .nav-cta {
+    padding: 0.5rem 0.625rem;
+  }
 }
 
 .section {
@@ -179,6 +203,10 @@ h3 {
 
 .footer-links a {
   color: var(--ink);
+}
+
+.footer-legal {
+  margin-top: 0.75rem;
 }
 
 /* Hero */
@@ -635,4 +663,45 @@ h3 {
   .kresby-anim .kresba path {
     animation: none;
   }
+}
+
+/* Cookie lišta — fixní dole, nehýbe obsahem (CLS) */
+.cookie-lista {
+  position: fixed;
+  z-index: 10;
+  inset: auto 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1rem max(1rem, (100% - 72rem) / 2);
+  background: var(--dark-bg);
+  color: var(--paper);
+  font-size: var(--fs-small);
+}
+
+.cookie-lista[hidden] {
+  display: none;
+}
+
+.cookie-lista p {
+  max-width: 60ch;
+}
+
+.cookie-akce {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.cookie-akce .btn {
+  padding: 0.5rem 1rem;
+  background: none;
+  cursor: pointer;
+}
+
+.cookie-akce a {
+  color: inherit;
 }

@@ -1,8 +1,11 @@
 ---
-import { SITE_NAME, PORTAL_URL, CTA_SECONDARY } from '../config.mjs';
+import { SITE_NAME, PORTAL_START_URL, PORTAL_LOGIN_URL, CTA_SECONDARY } from '../config.mjs';
 ---
 
 <header class="nav">
 	<a class="logo" href="/">{SITE_NAME}</a>
-	<a class="nav-cta" href={PORTAL_URL}>{CTA_SECONDARY}</a>
+	<div class="nav-odkazy">
+		<a class="nav-login" href={PORTAL_LOGIN_URL}>Přihlásit</a>
+		<a class="nav-cta" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
+	</div>
 </header>

@@ -45,3 +45,117 @@
     observer.observe(kresba);
   });
 })();
+
+// Atribuce odkazů do portálu a cookie souhlas.
+// Odkazy s data-atribuce vedou na PORTAL_START_URL i bez JS, tady se k nim
+// jen přidají UTM parametry, pp_ref a pp_lp. Cookie pp_ft (first-touch)
+// se zapíše jen se souhlasem (pp_consent=accepted).
+(function () {
+  var VLASTNI_DOMENA = 'polapeno.cz';
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  var COOKIE_DNI_FT = 90;
+  var COOKIE_DNI_SOUHLAS = 365;
+
+  function jeNaseDomena(host) {
+    return host === VLASTNI_DOMENA || host.slice(-VLASTNI_DOMENA.length - 1) === '.' + VLASTNI_DOMENA;
+  }
+
+  function jeVlastni(host) {
+    return jeNaseDomena(host) || host === location.hostname;
+  }
+
+  // UTM hodnoty: lowercase, max 100 znaků, nikdy e-mail ani telefon
+  function cistaUtm(hodnota) {
+    var v = hodnota.trim().toLowerCase();
+    if (!v || v.indexOf('@') !== -1 || /\+?\d[\d\s().\/-]{7,}\d/.test(v)) return null;
+    return v.slice(0, 100);
+  }
+
+  var params = new URLSearchParams(location.search);
+  var zdroj = {};
+  UTM.forEach(function (klic) {
+    var v = params.get(klic);
+    if (v === null) return;
+    v = cistaUtm(v);
+    if (v) zdroj[klic] = v;
+  });
+  // fbclid beze změny (velikost písmen je součást identifikátoru)
+  var fbclid = params.get('fbclid');
+  if (fbclid && fbclid.indexOf('@') === -1) zdroj.fbclid = fbclid;
+
+  var ref = '';
+  try {
+    var host = new URL(document.referrer).hostname.toLowerCase().replace(/^www\./, '');
+    if (host && !jeVlastni(host)) ref = host;
+  } catch (e) {}
+
+  var lp = location.pathname;
+
+  // --- odkazy do portálu ---
+  var dotaz = [];
+  Object.keys(zdroj).forEach(function (klic) {
+    dotaz.push(klic + '=' + encodeURIComponent(zdroj[klic]));
+  });
+  if (ref) dotaz.push('pp_ref=' + encodeURIComponent(ref));
+  // bez zdroje návštěvy zůstává odkaz čistý
+  if (dotaz.length) {
+    dotaz.push('pp_lp=' + encodeURIComponent(lp).replace(/%2F/g, '/'));
+    document.querySelectorAll('a[data-atribuce]').forEach(function (a) {
+      a.href += (a.href.indexOf('?') === -1 ? '?' : '&') + dotaz.join('&');
+    });
+  }
+
+  // --- cookies ---
+  function cookie(jmeno) {
+    var m = document.cookie.match('(?:^|; )' + jmeno + '=([^;]*)');
+    return m ? m[1] : null;
+  }
+
+  function zapisCookie(jmeno, hodnota, dni) {
+    var c = jmeno + '=' + hodnota + '; Path=/; Max-Age=' + dni * 86400 + '; SameSite=Lax; Secure';
+    // sdílení s portálem jen na skutečné doméně (lokálně a na náhledu by cookie neprošla)
+    if (jeNaseDomena(location.hostname)) {
+      c += '; Domain=.' + VLASTNI_DOMENA;
+    }
+    document.cookie = c;
+  }
+
+  // first-touch: jen poprvé, existující pp_ft se nikdy nepřepisuje
+  function ulozFirstTouch() {
+    if (cookie('pp_ft')) return;
+    var data = {};
+    UTM.concat('fbclid').forEach(function (klic) {
+      data[klic] = zdroj[klic] || null;
+    });
+    data.ref = ref || null;
+    data.lp = lp;
+    data.ts = Date.now();
+    zapisCookie('pp_ft', encodeURIComponent(JSON.stringify(data)), COOKIE_DNI_FT);
+  }
+
+  var souhlas = cookie('pp_consent');
+  if (souhlas === 'accepted') ulozFirstTouch();
+
+  var lista = document.getElementById('cookie-lista');
+  if (!lista) return;
+  if (!souhlas) lista.hidden = false;
+
+  lista.addEventListener('click', function (e) {
+    var tlacitko = e.target.closest('[data-consent]');
+    if (!tlacitko) return;
+    var volba = tlacitko.getAttribute('data-consent');
+    zapisCookie('pp_consent', volba, COOKIE_DNI_SOUHLAS);
+    if (volba === 'accepted') ulozFirstTouch();
+    // odvolaný souhlas: first-touch cookie smazat
+    else if (cookie('pp_ft')) zapisCookie('pp_ft', '', 0);
+    lista.hidden = true;
+  });
+
+  document.querySelectorAll('[data-cookie-nastaveni]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      lista.hidden = false;
+      lista.querySelector('button').focus();
+    });
+  });
+})();

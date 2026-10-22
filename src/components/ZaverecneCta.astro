@@ -1,11 +1,11 @@
 ---
-import { PRICE_START, PORTAL_URL, CTA_SECONDARY, TRIAL_DAYS } from '../config.mjs';
+import { PRICE_START, PORTAL_START_URL, CTA_SECONDARY, TRIAL_MINUTES } from '../config.mjs';
 import Kresba from './Kresba.astro';
 ---
 
 <section id="zaverecne-cta" class="section section--dark zaverecne-cta">
 	<h2>Zkuste to <span class="podtrzeni">na měsíc<Kresba typ="podtrzeni" seed={9} akcent /></span></h2>
 	<p class="cta-podnadpis">Nastavení zabere odpoledne. A číslo měnit nemusíte.</p>
-	<p class="cta-doplnek">Od {PRICE_START} Kč měsíčně. {TRIAL_DAYS} dní zdarma, bez smlouvy.</p>
-	<a class="btn btn--primary" href={PORTAL_URL}>{CTA_SECONDARY}</a>
+	<p class="cta-doplnek">Od {PRICE_START} Kč měsíčně. {TRIAL_MINUTES} minut zdarma, bez smlouvy.</p>
+	<a class="btn btn--primary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
 </section>

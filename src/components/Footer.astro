@@ -1,11 +1,16 @@
 ---
-import { SITE_NAME, PORTAL_URL, CONTACT_EMAIL, CTA_SECONDARY } from '../config.mjs';
+import { SITE_NAME, PORTAL_START_URL, CONTACT_EMAIL, CTA_SECONDARY, LEGAL_PAGES } from '../config.mjs';
 ---
 
 <footer class="footer">
 	<p class="footer-name">{SITE_NAME}</p>
 	<ul class="footer-links">
 		<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
-		<li><a href={PORTAL_URL}>{CTA_SECONDARY}</a></li>
+		<li><a href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a></li>
+	</ul>
+	<ul class="footer-links footer-legal">
+		{LEGAL_PAGES.map(({ path, label }) => <li><a href={path}>{label}</a></li>)}
+		<!-- bez JS vede na stránku o cookies, s JS znovu otevře lištu -->
+		<li><a href="/cookies" data-cookie-nastaveni>Nastavení cookies</a></li>
 	</ul>
 </footer>

@@ -1,0 +1,11 @@
+<!-- Cookie lišta. V HTML je skrytá, zobrazí ji main.js, když ještě není
+     uložený souhlas (pp_consent). Bez JS se žádné cookies neukládají,
+     takže lišta není potřeba. -->
+<div class="cookie-lista" id="cookie-lista" role="region" aria-label="Cookies" hidden>
+	<p>Marketingové cookies používáme, abychom věděli, odkud k nám lidé přicházejí. Uložíme je jen s vaším souhlasem.</p>
+	<div class="cookie-akce">
+		<button type="button" class="btn btn--secondary" data-consent="accepted">Přijmout vše</button>
+		<button type="button" class="btn btn--secondary" data-consent="rejected">Odmítnout</button>
+		<a href="/cookies">Nastavení cookies</a>
+	</div>
+</div>
