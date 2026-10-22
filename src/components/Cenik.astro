@@ -6,12 +6,16 @@ import {
 	CALLS_PROFI,
 	PRICE_EXTRA_START,
 	PRICE_EXTRA_PROFI,
+	PRICE_QUARTERLY_START,
 	PRICE_YEARLY_START,
 	CONTACT_EMAIL,
 } from '../config.mjs';
 
 // české formátování: 1 990 (nezlomitelná mezera)
 const kc = (n) => new Intl.NumberFormat('cs-CZ').format(n);
+
+// sleva při čtvrtletní platbě v % (1 590 proti 3 × 590 → 10)
+const slevaCtvrtletne = Math.floor((1 - PRICE_QUARTERLY_START / (3 * PRICE_START)) * 100);
 
 // kolik měsíců je při roční platbě zdarma (5 900 = 10 × 590 → 2)
 const mesicuZdarma = 12 - Math.round(PRICE_YEARLY_START / PRICE_START);
@@ -29,7 +33,7 @@ const mesicuZdarma = 12 - Math.round(PRICE_YEARLY_START / PRICE_START);
 				<li>Portál s přehledem hovorů</li>
 				<li>Shrnutí e-mailem</li>
 				<li>Nahrávky hovorů</li>
-				<li>Označení urgentních hovorů</li>
+				<li>SMS po každé poptávce</li>
 			</ul>
 		</div>
 
@@ -39,9 +43,8 @@ const mesicuZdarma = 12 - Math.round(PRICE_YEARLY_START / PRICE_START);
 			<ul>
 				<li>{CALLS_PROFI} hovorů v ceně, každý další {PRICE_EXTRA_PROFI}&nbsp;Kč</li>
 				<li>Vše ze Startu</li>
-				<li>SMS u urgentních hovorů</li>
 				<li>Vlastní naklonovaný hlas</li>
-				<li>Rezervace (připravujeme)</li>
+				<li>Rezervace termínů (připravujeme)</li>
 			</ul>
 		</div>
 
@@ -55,5 +58,5 @@ const mesicuZdarma = 12 - Math.round(PRICE_YEARLY_START / PRICE_START);
 		</div>
 	</div>
 
-	<p class="cenik-note">Ceny jsou konečné, DPH neplatíte. Spam a hovory kratší než 10 sekund se nepočítají. Při roční platbě jsou {mesicuZdarma} měsíce zdarma.</p>
+	<p class="cenik-note">Účtujeme za hovor, ne za minutu. Portál je pro celou provozovnu. Spam, nespojené hovory a hovory kratší než 10&nbsp;s se nepočítají. Ceny jsou konečné, DPH neplatíte. Čtvrtletně −{slevaCtvrtletne}&nbsp;%, při roční platbě {mesicuZdarma} měsíce zdarma.</p>
 </section>
