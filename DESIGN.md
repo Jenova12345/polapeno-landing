@@ -110,12 +110,9 @@ Pokud prvek můžeš odstranit a stránka řekne to samé, nemá tam co dělat.
 Knihovna rough.js generuje linie s přirozenou nepravidelností, jako by je
 někdo nakreslil rukou. Nahrazuje původní skenované SVG kresby.
 
-**Kde použít (max 4 prvky na celé stránce):**
+**Kde použít (2 prvky na celé stránce):**
 
-- Podtržení pod klíčovým slovem nebo cenou (1–2 na stránku).
-- Kroužek kolem důležitého slova (max 1 na stránku).
-- Šipky ve flow (hero) — místo typografických →.
-- Případně horizontální čára jako vizuální předěl mezi sekcemi.
+- Podtržení pod klíčovým slovem nebo cenou: cena v §2 a „na měsíc“ v §6.
 
 **Kde NEPOUŽÍT:**
 
