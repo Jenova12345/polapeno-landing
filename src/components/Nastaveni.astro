@@ -1,3 +1,7 @@
+---
+import Kresba from './Kresba.astro';
+---
+
 <section id="nastaveni" class="section section--dark nastaveni">
 	<h2>
 		<span class="nastaveni-hlavni">Za 10 minut už za vás zvedá hovory.</span>
@@ -5,24 +9,39 @@
 	</h2>
 
 	<div class="nastaveni-obsah">
-		<!-- pořadí nesou šipky mezi kroky a směr zleva doprava, žádná čísla -->
-		<ol class="roadmap">
-			<li>
-				<div class="roadmap-icon" aria-hidden="true"></div>
-				<h3>Založíte si účet</h3>
-				<p>Jméno servisu, otevírací dobu a co děláte. Dvě minuty.</p>
-			</li>
-			<li>
-				<div class="roadmap-icon" aria-hidden="true"></div>
-				<h3>Nastavíte asistenta</h3>
-				<p>Řeknete mu, jak se má hlásit a co má zjistit. Vyplníte formulář, žádný technik.</p>
-			</li>
-			<li>
-				<div class="roadmap-icon" aria-hidden="true"></div>
-				<h3>Zapnete přesměrování</h3>
-				<p>Na svém telefonu jedno nastavení. Hotovo.</p>
-			</li>
-		</ol>
+		<!-- roadmapa: pořadí nese čára zleva doprava (na mobilu shora dolů), žádná čísla.
+		     Texty střídavě nad a pod čárou, na druhé straně místo pro ilustraci. -->
+		<div class="roadmap">
+			<Kresba typ="cesta" seed={11} staticka />
+			<Kresba typ="cesta-svisla" seed={12} staticka />
+			<ol class="roadmap-zastavky">
+				<li class="zastavka zastavka--nahore">
+					<Kresba typ="tecka" seed={21} staticka />
+					<div class="zastavka-text">
+						<h3>Založíte si účet</h3>
+						<p>Jméno servisu, otevírací dobu a co děláte. Dvě minuty.</p>
+					</div>
+					<div class="roadmap-ilust" aria-hidden="true"></div>
+				</li>
+				<li class="zastavka zastavka--dole">
+					<Kresba typ="tecka" seed={22} staticka />
+					<div class="zastavka-text">
+						<h3>Nastavíte asistenta</h3>
+						<p>Řeknete mu, jak se má hlásit a co má zjistit. Vyplníte formulář, žádný technik.</p>
+					</div>
+					<div class="roadmap-ilust" aria-hidden="true"></div>
+				</li>
+				<li class="zastavka zastavka--nahore">
+					<Kresba typ="tecka" seed={23} staticka />
+					<div class="zastavka-text">
+						<h3>Zapnete přesměrování</h3>
+						<p>Na svém telefonu jedno nastavení. Hotovo.</p>
+					</div>
+					<div class="roadmap-ilust" aria-hidden="true"></div>
+				</li>
+			</ol>
+			<Kresba typ="fajfka" seed={31} staticka />
+		</div>
 
 		<div class="portal">
 			<img

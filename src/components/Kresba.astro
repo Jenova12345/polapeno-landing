@@ -5,39 +5,66 @@
 import rough from 'roughjs';
 
 interface Props {
-	typ: 'podtrzeni';
+	typ: 'podtrzeni' | 'cesta' | 'cesta-svisla' | 'tecka' | 'fajfka';
 	seed: number;
 	akcent?: boolean;
+	// bez animace dokreslení (main.js si kresby bez třídy .kresba nevšímá)
+	staticka?: boolean;
 }
 
-const { typ, seed, akcent = false } = Astro.props;
+const { typ, seed, akcent = false, staticka = false } = Astro.props;
 
 const gen = rough.generator();
 const styl = { roughness: 1.5, bowing: 1, strokeWidth: 2, seed, disableMultiStroke: true };
 
 const tvary = {
 	// mírně vlnitá jedna čára
-	podtrzeni: {
+	podtrzeni: () => ({
 		viewBox: '0 0 200 12',
 		kresby: [gen.curve([[2, 7], [70, 4], [135, 8], [198, 5]], styl)],
-	},
+	}),
+	// roadmapa §3 na desktopu: natahuje se jen do šířky, výška 64 = 64 px.
+	// Zastávky na x = 0, 1/3, 2/3 šířky (+ polovina tečky), vlna má v nich
+	// vrchol nebo dno, takže drobný posun v x na výšce čáry nic nemění.
+	cesta: () => ({
+		viewBox: '0 0 1000 64',
+		kresby: [gen.curve([[8, 12], [175, 32], [341, 52], [508, 32], [674, 12], [830, 26], [970, 32]], styl)],
+	}),
+	// roadmapa §3 na mobilu: svislá, jen lehce zvlněná kolem středu
+	'cesta-svisla': () => ({
+		viewBox: '0 0 40 1000',
+		kresby: [gen.curve([[20, 0], [23, 250], [17, 500], [23, 750], [20, 1000]], styl)],
+	}),
+	// vyplněná tečka zastávky; kreslená ve větším měřítku, aby pevný
+	// rozptyl rough.js malý kruh nezdeformoval
+	tecka: () => ({
+		viewBox: '0 0 48 48',
+		kresby: [gen.circle(24, 24, 40, { ...styl, fill: 'currentColor', fillStyle: 'solid' })],
+	}),
+	// fajfka na konci roadmapy: hotovo
+	fajfka: () => ({
+		viewBox: '0 0 24 20',
+		kresby: [gen.linearPath([[3, 11], [9, 17], [21, 3]], styl)],
+	}),
 };
 
-const { viewBox, kresby } = tvary[typ];
+const { viewBox, kresby } = tvary[typ]();
 const cesty = kresby
 	.flatMap((k) => gen.toPaths(k))
 	.map((p) => ({
 		d: p.d.replace(/-?\d+\.\d+/g, (n) => String(Math.round(+n * 10) / 10)),
-		sirka: p.strokeWidth,
+		sirka: p.strokeWidth || undefined,
+		vypln: p.fill && p.fill !== 'none' ? p.fill : undefined,
+		tah: p.stroke === 'none' ? 'none' : undefined,
 	}));
 ---
 
 <svg
-	class:list={['kresba', `kresba--${typ}`, { 'kresba--akcent': akcent }]}
+	class:list={[staticka ? 'kresba-staticka' : 'kresba', `kresba--${typ}`, { 'kresba--akcent': akcent }]}
 	viewBox={viewBox}
 	preserveAspectRatio="none"
 	aria-hidden="true"
 	focusable="false"
 >
-	{cesty.map(({ d, sirka }) => <path d={d} stroke-width={sirka} />)}
+	{cesty.map(({ d, sirka, vypln, tah }) => <path d={d} stroke-width={sirka} fill={vypln} stroke={tah} />)}
 </svg>
