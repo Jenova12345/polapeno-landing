@@ -314,36 +314,6 @@ h3 {
   gap: 2.5rem;
 }
 
-/* flow kroky jako nenápadný úvodní kontext nad nadpisem */
-.tri-hlavicka {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.flow {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0;
-  list-style: none;
-  font-size: var(--fs-small);
-  font-weight: var(--fw-bold);
-}
-
-.flow-num {
-  margin-right: 0.5rem;
-  font-weight: var(--fw-black);
-}
-
-@media (min-width: 640px) {
-  .flow {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.5rem;
-  }
-}
-
 .tri-moznosti h2 {
   max-width: 28ch;
   font-weight: var(--fw-black);
