@@ -10,7 +10,7 @@ import Kresba from './Kresba.astro';
 
 	<div class="nastaveni-obsah">
 		<!-- roadmapa: pořadí nese čára zleva doprava (na mobilu shora dolů), žádná čísla.
-		     Texty střídavě nad a pod čárou, na druhé straně místo pro ilustraci. -->
+		     Texty s ilustrací střídavě nad a pod čárou. -->
 		<div class="roadmap">
 			<Kresba typ="cesta" seed={11} staticka />
 			<Kresba typ="cesta-svisla" seed={12} staticka />
@@ -18,26 +18,56 @@ import Kresba from './Kresba.astro';
 				<li class="zastavka zastavka--nahore">
 					<Kresba typ="tecka" seed={21} staticka />
 					<div class="zastavka-text">
-						<h3>Založíte si účet</h3>
-						<p>Jméno servisu, otevírací dobu a co děláte. Dvě minuty.</p>
+						<img
+							class="roadmap-ilust"
+							src="/img/roadmap-1.jpg"
+							width="200"
+							height="200"
+							alt="Registrace v portálu"
+							loading="lazy"
+							decoding="async"
+						/>
+						<div>
+							<h3>Založíte si účet</h3>
+							<p>Jméno servisu, otevírací dobu a co děláte. Dvě minuty.</p>
+						</div>
 					</div>
-					<div class="roadmap-ilust" aria-hidden="true"></div>
 				</li>
 				<li class="zastavka zastavka--dole">
 					<Kresba typ="tecka" seed={22} staticka />
 					<div class="zastavka-text">
-						<h3>Nastavíte asistenta</h3>
-						<p>Řeknete mu, jak se má hlásit a co má zjistit. Vyplníte formulář, žádný technik.</p>
+						<img
+							class="roadmap-ilust"
+							src="/img/roadmap-2.jpg"
+							width="200"
+							height="200"
+							alt="Nastavení asistenta"
+							loading="lazy"
+							decoding="async"
+						/>
+						<div>
+							<h3>Nastavíte asistenta</h3>
+							<p>Řeknete mu, jak se má hlásit a co má zjistit. Vyplníte formulář, žádný technik.</p>
+						</div>
 					</div>
-					<div class="roadmap-ilust" aria-hidden="true"></div>
 				</li>
 				<li class="zastavka zastavka--nahore">
 					<Kresba typ="tecka" seed={23} staticka />
 					<div class="zastavka-text">
-						<h3>Zapnete přesměrování</h3>
-						<p>Na svém telefonu jedno nastavení. Hotovo.</p>
+						<img
+							class="roadmap-ilust"
+							src="/img/roadmap-3.jpg"
+							width="200"
+							height="200"
+							alt="Zapnutí přesměrování"
+							loading="lazy"
+							decoding="async"
+						/>
+						<div>
+							<h3>Zapnete přesměrování</h3>
+							<p>Na svém telefonu jedno nastavení. Hotovo.</p>
+						</div>
 					</div>
-					<div class="roadmap-ilust" aria-hidden="true"></div>
 				</li>
 			</ol>
 			<Kresba typ="fajfka" seed={31} staticka />

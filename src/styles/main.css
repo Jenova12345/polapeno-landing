@@ -349,7 +349,7 @@ h3 {
 
 /* §3 Za 10 minut už za vás zvedá hovory */
 .nastaveni h2 {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .nastaveni h2 > span {
@@ -369,7 +369,7 @@ h3 {
 
 .nastaveni-obsah {
   display: grid;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 /* Roadmapa: rough.js čára (z buildu) se třemi zastávkami a fajfkou.
@@ -433,6 +433,9 @@ h3 {
 }
 
 .zastavka-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
   grid-column: 2;
 }
 
@@ -442,11 +445,12 @@ h3 {
   font-weight: var(--fw-bold);
 }
 
-/* místo pro ilustraci, dodá se později; na mobilu zatím nezabírá místo */
+/* křídová ilustrace vedle titulku, na stejné straně čáry jako text */
 .roadmap-ilust {
-  display: none;
-  width: 80px;
-  height: 80px;
+  flex: none;
+  width: 60px;
+  height: auto;
+  opacity: 0.85;
 }
 
 .kresba--fajfka {
@@ -464,7 +468,7 @@ h3 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto 4rem auto;
     column-gap: 0;
-    row-gap: 1rem;
+    row-gap: 0.75rem;
   }
 
   .kresba--cesta {
@@ -484,8 +488,8 @@ h3 {
     grid-row: 1 / -1;
     grid-template-columns: none;
     grid-template-rows: subgrid;
-    row-gap: 1rem;
-    padding: 0 2rem 0 0;
+    row-gap: 0.75rem;
+    padding: 0 1rem 0 0;
   }
 
   .zastavka:nth-child(1) { grid-column: 1; grid-row: 1 / -1; }
@@ -515,14 +519,11 @@ h3 {
   }
 
   .roadmap-ilust {
-    display: block;
-    grid-column: 1;
+    width: 80px;
   }
 
   .zastavka--nahore .zastavka-text { grid-row: 1; align-self: end; }
-  .zastavka--nahore .roadmap-ilust { grid-row: 3; align-self: start; }
   .zastavka--dole .zastavka-text { grid-row: 3; align-self: start; }
-  .zastavka--dole .roadmap-ilust { grid-row: 1; align-self: end; }
 
   .kresba--fajfka {
     grid-column: 3;
