@@ -384,7 +384,8 @@ h3 {
   font-weight: var(--fw-black);
 }
 
-/* screenshoty portálu: jen tenký obrys, žádný stín */
+/* screenshoty portálu vložené do křídových kreseb monitoru a telefonu
+   (hotové obrázky, pozadí kresby = pozadí sekce) */
 .portal {
   display: grid;
   gap: 2.5rem;
@@ -396,35 +397,22 @@ h3 {
   height: auto;
 }
 
-.portal-desktop {
-  border: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
-}
-
-/* naznačená silueta telefonu, ne realistický mockup:
-   tmavší pruh nahoře (navbar) a dole (home bar) */
 .portal-telefon {
   justify-self: center;
-  width: 100%;
-  max-width: 200px;
-  overflow: hidden;
-  padding: 20px 0 12px;
-  border: 2px solid color-mix(in srgb, var(--paper) 30%, transparent);
-  border-radius: 24px;
-  background: color-mix(in srgb, var(--dark-bg) 60%, #000);
+  max-width: 240px;
 }
 
 @media (min-width: 900px) {
-  /* desktop ~60 %, telefon ~30 %, telefon posunutý dolů */
+  /* monitor ~60 %, telefon menší a posunutý dolů */
   .portal {
-    grid-template-columns: 60% minmax(0, 280px);
+    grid-template-columns: 60% 28%;
     justify-content: space-between;
     align-items: start;
-    gap: 2.5rem;
   }
 
   .portal-telefon {
     max-width: none;
-    margin-top: 2.5rem;
+    margin-top: 3rem;
   }
 }
 
