@@ -334,10 +334,21 @@ h3 {
   gap: 2.5rem;
 }
 
-.tri-moznosti h2 {
-  max-width: 28ch;
-  font-weight: var(--fw-black);
+/* stejně jako hero: menší úvod nahoře, dominantní pointa pod ním (1,6–1,8×) */
+.tri-moznosti h2 > span {
+  display: block;
   text-wrap: balance;
+}
+
+.tri-uvod {
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-regular);
+}
+
+.tri-hlavni {
+  margin-top: 0.15em;
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); /* 32 px na 360, 44 px na 1440 */
+  font-weight: var(--fw-black);
 }
 
 .moznosti {
