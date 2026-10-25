@@ -138,7 +138,19 @@
 
   var lista = document.getElementById('cookie-lista');
   if (!lista) return;
-  if (!souhlas) lista.hidden = false;
+
+  // Lišta je fixní dole. Dokud je vidět, dostane stránka dole stejně
+  // vysoký okraj, aby lišta nezakrývala konec obsahu (patičku).
+  function vyskaListy() {
+    document.documentElement.style.setProperty('--cookie-lista', lista.hidden ? '0px' : lista.offsetHeight + 'px');
+  }
+  function ukazListu(ano) {
+    lista.hidden = !ano;
+    vyskaListy();
+  }
+  window.addEventListener('resize', vyskaListy);
+
+  if (!souhlas) ukazListu(true);
 
   lista.addEventListener('click', function (e) {
     var tlacitko = e.target.closest('[data-consent]');
@@ -148,13 +160,13 @@
     if (volba === 'accepted') ulozFirstTouch();
     // odvolaný souhlas: first-touch cookie smazat
     else if (cookie('pp_ft')) zapisCookie('pp_ft', '', 0);
-    lista.hidden = true;
+    ukazListu(false);
   });
 
   document.querySelectorAll('[data-cookie-nastaveni]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      lista.hidden = false;
+      ukazListu(true);
       lista.querySelector('button').focus();
     });
   });

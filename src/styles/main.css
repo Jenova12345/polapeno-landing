@@ -154,6 +154,17 @@ h3 {
 }
 
 /* na úzkém displeji se logo, Přihlásit a CTA musí vejít na jeden řádek */
+/* dotykové cíle v navigaci aspoň 44 px vysoké (mobil a tablet) */
+@media (max-width: 899px) {
+  .logo,
+  .nav-login,
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
 @media (max-width: 479px) {
   .nav-odkazy {
     gap: 0.75rem;
@@ -849,5 +860,57 @@ h3 {
   .cookie-akce {
     flex: none;
     flex-wrap: nowrap;
+  }
+}
+
+/* Mobil: dotykové cíle aspoň 44 px (mobil a tablet), menší mezery
+   mezi sekcemi a zalamování bez osamocených slov (jen telefon) */
+@media (max-width: 899px) {
+  /* okraj pod obsahem, dokud je cookie lišta vidět (výšku nastaví main.js),
+     aby lišta nezakrývala patičku */
+  body {
+    padding-bottom: var(--cookie-lista, 0px);
+  }
+
+  .tarif a,
+  .footer-links a,
+  .cookie-akce a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .footer-links {
+    row-gap: 0;
+  }
+
+  .footer-legal {
+    margin-top: 0;
+  }
+
+  .cookie-akce .btn {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 639px) {
+  /* ceník a FAQ mají vlastní, už menší odsazení */
+  .section:not(.cenik, .faq) {
+    padding-block: 3rem;
+  }
+
+  .cenik-note {
+    font-size: 1rem;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  dt,
+  .cta-doplnek {
+    text-wrap: balance;
   }
 }
