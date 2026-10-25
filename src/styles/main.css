@@ -165,14 +165,23 @@ h3 {
   }
 }
 
-@media (max-width: 479px) {
+/* Mobil: jen logo a tlačítko. „Přihlásit“ je schované, stávající
+   zákazníci se do portálu dostanou přímo. */
+@media (max-width: 639px) {
+  .logo {
+    font-size: 1.125rem; /* 18 px */
+  }
+
+  .nav-login {
+    display: none;
+  }
+
   .nav-odkazy {
-    gap: 0.75rem;
     font-size: var(--fs-small);
   }
 
   .nav-cta {
-    padding: 0.5rem 0.625rem;
+    padding: 0.5rem 0.75rem;
   }
 }
 
