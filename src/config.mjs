@@ -1,8 +1,13 @@
 export const SITE_NAME = 'Polapeno';
 export const SITE_TAGLINE = 'Telefonní asistent pro autoservisy';
+export const SITE_URL = 'https://polapeno.cz';
 export const PORTAL_START_URL = 'https://app.polapeno.cz/start';
 export const PORTAL_LOGIN_URL = 'https://app.polapeno.cz/login';
 export const CONTACT_EMAIL = 'info@polapeno.cz';
+// záznam souhlasu s cookies (portál ho povoluje jen z https://polapeno.cz)
+export const CONSENT_API_URL = 'https://app.polapeno.cz/api/consent';
+// Meta Pixel, načte se jen s marketingovým souhlasem; prázdné = vypnuto
+export const META_PIXEL_ID = '2840626756307794';
 export const DEMO_READY = false;
 export const DEMO_NUMBER = '+420 000 000 000';
 export const PRICE_START = 590;

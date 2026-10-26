@@ -846,8 +846,20 @@ h3 {
   font-size: var(--fs-small);
 }
 
-.cookie-lista[hidden] {
+.cookie-lista[hidden],
+.cookie-lista [hidden] {
   display: none;
+}
+
+/* nastavení s kategoriemi je vyšší, na malém displeji se posouvá uvnitř */
+.cookie-lista--nastaveni {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.cookie-nadpis {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
 }
 
 .cookie-lista p {
@@ -867,12 +879,50 @@ h3 {
   cursor: pointer;
 }
 
-.cookie-akce a {
+/* „Nastavit“ je méně výrazné než Přijmout / Odmítnout, které jsou stejné */
+.cookie-odkaz {
+  padding: 0;
+  border: 0;
+  background: none;
   color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cookie-nastaveni {
+  display: grid;
+  gap: 1rem;
+}
+
+.cookie-kategorie {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 60ch;
+  padding: 0;
+  list-style: none;
+}
+
+.cookie-kategorie label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: var(--fw-bold);
+}
+
+.cookie-kategorie input {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  accent-color: var(--paper);
+}
+
+.cookie-kategorie p {
+  margin-left: 1.625rem;
 }
 
 @media (min-width: 960px) {
-  .cookie-lista {
+  .cookie-lista:not(.cookie-lista--nastaveni) {
     flex-direction: row;
     align-items: center;
   }
@@ -894,7 +944,8 @@ h3 {
 
   .tarif a,
   .footer-links a,
-  .cookie-akce a {
+  .cookie-odkaz,
+  .cookie-kategorie label {
     display: inline-flex;
     align-items: center;
     min-height: 44px;

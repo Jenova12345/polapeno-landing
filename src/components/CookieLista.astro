@@ -1,11 +1,37 @@
-<!-- Cookie lišta. V HTML je skrytá, zobrazí ji main.js, když ještě není
-     uložený souhlas (pp_consent). Bez JS se žádné cookies neukládají,
-     takže lišta není potřeba. -->
-<div class="cookie-lista" id="cookie-lista" role="region" aria-label="Cookies" hidden>
-	<p>Marketingové cookies používáme, abychom věděli, odkud k nám lidé přicházejí. Uložíme je jen s vaším souhlasem.</p>
-	<div class="cookie-akce">
-		<button type="button" class="btn btn--secondary" data-consent="accepted">Přijmout vše</button>
-		<button type="button" class="btn btn--secondary" data-consent="rejected">Odmítnout</button>
-		<a href="/cookies">Nastavení cookies</a>
+<!-- Cookie lišta. V HTML je skrytá, zobrazí ji main.js, když není uložený
+     platný souhlas (pp_consent). Bez JS se žádné cookies neukládají
+     a nic se nenačítá, takže lišta není potřeba. -->
+<div class="cookie-lista" id="cookie-lista" role="region" aria-labelledby="cookie-nadpis" hidden>
+	<div class="cookie-text">
+		<h2 class="cookie-nadpis" id="cookie-nadpis">Cookies</h2>
+		<p>Nezbytné cookies potřebujeme pro zabezpečení. S vaším souhlasem použijeme i analytické cookies, abychom věděli, co na webu zlepšit, a marketingové cookies pro měření reklam na Facebooku a Instagramu. Souhlas můžete kdykoli změnit odkazem Nastavení cookies.</p>
+	</div>
+
+	<div class="cookie-akce cookie-akce--lista">
+		<button type="button" class="btn btn--secondary" data-consent="vse">Přijmout vše</button>
+		<button type="button" class="btn btn--secondary" data-consent="nic">Odmítnout vše</button>
+		<button type="button" class="cookie-odkaz" data-consent="nastavit">Nastavit</button>
+	</div>
+
+	<div class="cookie-nastaveni" hidden>
+		<ul class="cookie-kategorie">
+			<li>
+				<label><input type="checkbox" checked disabled /> Nezbytné (vždy zapnuté)</label>
+				<p>Zabezpečení a uložení této volby. Bez nich web nefunguje.</p>
+			</li>
+			<li>
+				<label><input type="checkbox" role="switch" name="a" /> Analytické</label>
+				<p>Jak lidé web používají, abychom věděli, co zlepšit.</p>
+			</li>
+			<li>
+				<label><input type="checkbox" role="switch" name="m" /> Marketingové</label>
+				<p>Měření reklam na Facebooku a Instagramu (Meta): z které reklamy jste přišli a jestli vedla k registraci nebo platbě.</p>
+			</li>
+		</ul>
+		<div class="cookie-akce">
+			<button type="button" class="btn btn--secondary" data-consent="vyber">Uložit výběr</button>
+			<button type="button" class="btn btn--secondary" data-consent="vse">Přijmout vše</button>
+			<button type="button" class="btn btn--secondary" data-consent="nic">Odmítnout vše</button>
+		</div>
 	</div>
 </div>
