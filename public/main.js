@@ -271,23 +271,25 @@
     spustPixel();
   }
 
-  // --- Lead při kliknutí na „Vyzkoušet zdarma“ ---
-  // Všechny odkazy s data-atribuce vedou na /start. Lead jen s m = 1.
+  // --- KlikNaZkousku při kliknutí na „Vyzkoušet zdarma“ ---
+  // Všechny odkazy s data-atribuce vedou na /start. Jen s m = 1. Vlastní
+  // událost, ne Lead: Lead posílá portál ze serveru při registraci (zadaný
+  // e-mail), aby Meta optimalizovala na skutečné kontakty (Tomáš 28. 10. 2026).
   // Stránka odchází na jinou doménu a požadavek Pixelu by se zrušil, proto
-  // se přechod o chvíli odloží: dokud se nenačte fbevents.js, Lead čeká
-  // ve frontě fbq. Nejdéle LEAD_MAX_MS, pak se odejde i bez něj.
+  // se přechod o chvíli odloží: dokud se nenačte fbevents.js, událost čeká
+  // ve frontě fbq. Nejdéle KLIK_MAX_MS, pak se odejde i bez ní.
   // Nový panel (Ctrl/Cmd, prostřední tlačítko) stránku neopouští, tam se
-  // jen odešle Lead. Bez JS odkaz funguje jako obyčejný odkaz.
-  var LEAD_PO_NACTENI_MS = 300;
-  var LEAD_MAX_MS = 1000;
+  // jen odešle událost. Bez JS odkaz funguje jako obyčejný odkaz.
+  var KLIK_PO_NACTENI_MS = 300;
+  var KLIK_MAX_MS = 1000;
   var odchazi = false;
 
-  function odejdiPoLeadu(url) {
+  function odejdiPoKliku(url) {
     var zacatek = Date.now();
     (function cekej() {
       var nacteno = window.fbq && window.fbq.callMethod;
-      if (nacteno || Date.now() - zacatek >= LEAD_MAX_MS) {
-        setTimeout(function () { location.href = url; }, nacteno ? LEAD_PO_NACTENI_MS : 0);
+      if (nacteno || Date.now() - zacatek >= KLIK_MAX_MS) {
+        setTimeout(function () { location.href = url; }, nacteno ? KLIK_PO_NACTENI_MS : 0);
       } else {
         setTimeout(cekej, 50);
       }
@@ -302,11 +304,11 @@
       if (!novyPanel) e.preventDefault();
       return;
     }
-    window.fbq('track', 'Lead');
+    window.fbq('trackCustom', 'KlikNaZkousku');
     if (novyPanel || e.defaultPrevented) return;
     e.preventDefault();
     odchazi = true;
-    odejdiPoLeadu(a.href);
+    odejdiPoKliku(a.href);
   });
   // návrat tlačítkem Zpět (bfcache) vrací stránku i s odchazi = true
   window.addEventListener('pageshow', function () { odchazi = false; });
@@ -314,7 +316,7 @@
   document.addEventListener('auxclick', function (e) {
     if (e.button !== 1) return;
     var a = e.target.closest && e.target.closest('a[data-atribuce]');
-    if (a && souhlas && souhlas.m === 1 && pixelBezi) window.fbq('track', 'Lead');
+    if (a && souhlas && souhlas.m === 1 && pixelBezi) window.fbq('trackCustom', 'KlikNaZkousku');
   });
 
   // nová nebo změněná volba: zapsat, uklidit po odvolání, zaznamenat do portálu
