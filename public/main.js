@@ -271,6 +271,52 @@
     spustPixel();
   }
 
+  // --- Lead při kliknutí na „Vyzkoušet zdarma“ ---
+  // Všechny odkazy s data-atribuce vedou na /start. Lead jen s m = 1.
+  // Stránka odchází na jinou doménu a požadavek Pixelu by se zrušil, proto
+  // se přechod o chvíli odloží: dokud se nenačte fbevents.js, Lead čeká
+  // ve frontě fbq. Nejdéle LEAD_MAX_MS, pak se odejde i bez něj.
+  // Nový panel (Ctrl/Cmd, prostřední tlačítko) stránku neopouští, tam se
+  // jen odešle Lead. Bez JS odkaz funguje jako obyčejný odkaz.
+  var LEAD_PO_NACTENI_MS = 300;
+  var LEAD_MAX_MS = 1000;
+  var odchazi = false;
+
+  function odejdiPoLeadu(url) {
+    var zacatek = Date.now();
+    (function cekej() {
+      var nacteno = window.fbq && window.fbq.callMethod;
+      if (nacteno || Date.now() - zacatek >= LEAD_MAX_MS) {
+        setTimeout(function () { location.href = url; }, nacteno ? LEAD_PO_NACTENI_MS : 0);
+      } else {
+        setTimeout(cekej, 50);
+      }
+    })();
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-atribuce]');
+    if (!a || !souhlas || souhlas.m !== 1 || !pixelBezi) return;
+    var novyPanel = e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank';
+    if (odchazi) {
+      if (!novyPanel) e.preventDefault();
+      return;
+    }
+    window.fbq('track', 'Lead');
+    if (novyPanel || e.defaultPrevented) return;
+    e.preventDefault();
+    odchazi = true;
+    odejdiPoLeadu(a.href);
+  });
+  // návrat tlačítkem Zpět (bfcache) vrací stránku i s odchazi = true
+  window.addEventListener('pageshow', function () { odchazi = false; });
+  // prostřední tlačítko nespouští click, jen auxclick
+  document.addEventListener('auxclick', function (e) {
+    if (e.button !== 1) return;
+    var a = e.target.closest && e.target.closest('a[data-atribuce]');
+    if (a && souhlas && souhlas.m === 1 && pixelBezi) window.fbq('track', 'Lead');
+  });
+
   // nová nebo změněná volba: zapsat, uklidit po odvolání, zaznamenat do portálu
   function ulozVolbu(a, m) {
     var predtim = souhlas;
