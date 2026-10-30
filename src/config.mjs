@@ -33,3 +33,8 @@ export const LEGAL_PAGES = [
 	{ path: '/cookies', label: 'Cookies' },
 	{ path: '/zpracovatele', label: 'Zpracovatelé' },
 ];
+
+// Trvalá přesměrování do portálu (301), přidají se do _redirects při buildu.
+export const PORTAL_REDIRECTS = [
+	{ path: '/cenik', to: 'https://app.polapeno.cz/cenik' },
+];

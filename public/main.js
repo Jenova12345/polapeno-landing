@@ -242,7 +242,14 @@
   // --- Meta Pixel ---
   var pixelBezi = false;
 
+  // naše vlastní zařízení (cookie pp_interni=1): Pixel se nenačte,
+  // aby interní návštěvy nezkreslovaly měření reklam
+  function jeNaseZarizeni() {
+    return document.cookie.split('; ').some(function (c) { return c === 'pp_interni=1'; });
+  }
+
   function spustPixel() {
+    if (jeNaseZarizeni()) return;
     if (!PIXEL_ID) return;
     if (pixelBezi) {
       window.fbq('consent', 'grant');
