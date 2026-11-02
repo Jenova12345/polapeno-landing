@@ -38,3 +38,9 @@ export const LEGAL_PAGES = [
 export const PORTAL_REDIRECTS = [
 	{ path: '/cenik', to: 'https://app.polapeno.cz/cenik' },
 ];
+
+// Krátké odkazy pro kampaně (302, cíl se může měnit), přidají se do _redirects.
+export const CAMPAIGN_REDIRECTS = [
+	// SMS z Meta lead formulářů
+	{ path: '/fb', to: '/?utm_source=facebook&utm_medium=leadform&utm_campaign=lead-listopad&utm_content=sms' },
+];
