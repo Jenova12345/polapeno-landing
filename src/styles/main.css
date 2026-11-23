@@ -397,10 +397,10 @@ h3 {
   text-align: center;
 }
 
-/* na mobilu se popisek láme jen za tečkou, jméno servisu zůstane pohromadě */
+/* pod 1200 px dva řádky pod sebou: „Reference od zákazníka“ a jméno servisu */
 .reference-predpona,
 .reference-jmeno {
-  white-space: nowrap;
+  display: block;
 }
 
 /* desktop: hero ve dvou sloupcích, video vpravo svisle na středu textového bloku */

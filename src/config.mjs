@@ -1,5 +1,5 @@
 export const SITE_NAME = 'Polapeno';
-export const SITE_TAGLINE = 'Telefonní asistent pro autoservisy';
+export const SITE_TAGLINE = 'telefonní asistent pro autoservisy';
 export const SITE_URL = 'https://polapeno.cz';
 export const PORTAL_START_URL = 'https://app.polapeno.cz/start';
 export const PORTAL_LOGIN_URL = 'https://app.polapeno.cz/login';

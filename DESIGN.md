@@ -27,6 +27,9 @@ a okamžitě signalizují „tohle nedělal člověk".
 - Žádné logo bary („Důvěřuje nám…"), dokud nejsou skutečné.
 - Žádné falešné testimonials ani reference.
 - Žádné emoji jako vizuální prvky.
+- Žádné oddělovací tečky „·“ a „•“ ani svislítka „|“ (ani pomlčky „—“ jako
+  spojka) mezi kusy textu. Je to typický znak generovaných stránek. Místo
+  toho přirozená věta, čárka nebo zalomení na nový řádek.
 
 ### Grafika
 
@@ -165,7 +168,8 @@ ne testimonial vymyšlený pro web.
 - **Poznámka:** na desktopu od 1200 px ručně psané „Reference od zákazníka“
   vlevo dole od videa se šipkou k rámečku (výjimky v §3 a výše). Jediná
   ručně psaná poznámka na webu, jen u video reference. Pod 1200 px místo ní
-  popisek „Reference od zákazníka · Autoslužby Ander, Rychvald“.
+  popisek na dva řádky: „Reference od zákazníka“ a pod ním
+  „Autoslužby Ander, Rychvald“.
 - **Křídové kresby v heru:** na desktopu od 1200 px z obrázku zůstává jen
   výřez s autem mezi claimem a videem (klíč a telefon nahradila poznámka).
   Do videa, rámečku ani poznámky nezasahuje.
