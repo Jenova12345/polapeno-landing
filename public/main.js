@@ -49,8 +49,9 @@
 // Atribuce odkazů do portálu, cookie souhlas a Meta Pixel.
 // Odkazy s data-atribuce vedou na PORTAL_START_URL i bez JS, tady se k nim
 // jen přidají UTM parametry, pp_ref a pp_lp. Souhlas (pp_consent) má formát
-// daný portálem a sdílí se s ním přes doménu .polapeno.cz. Cookie pp_ft
-// (first-touch) a Pixel jen s marketingovým souhlasem (m = 1).
+// daný portálem (verze 2: analytické cookies nepoužíváme, a je vždy 0) a sdílí
+// se s ním přes doménu .polapeno.cz. Cookie pp_ft (first-touch) a Pixel jen
+// s marketingovým souhlasem (m = 1).
 (function () {
   var VLASTNI_DOMENA = 'polapeno.cz';
   var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
@@ -173,7 +174,8 @@
     for (var i = 0; i < SOUHLAS_KLICE.length; i++) {
       if (!Object.prototype.hasOwnProperty.call(s, SOUHLAS_KLICE[i])) return null;
     }
-    if (s.v !== 1) return null;
+    // volba ve starší verzi (v = 1) neplatí, lišta se ukáže znovu
+    if (s.v !== 2) return null;
     if ((s.a !== 0 && s.a !== 1) || (s.m !== 0 && s.m !== 1)) return null;
     if (typeof s.id !== 'string' || !UUID.test(s.id)) return null;
     var ted = Date.now();
@@ -328,7 +330,7 @@
   function ulozVolbu(a, m) {
     var predtim = souhlas;
     if (predtim && predtim.a === a && predtim.m === m) return;
-    souhlas = { v: 1, a: a, m: m, t: Date.now(), id: predtim ? predtim.id : noveId() };
+    souhlas = { v: 2, a: a, m: m, t: Date.now(), id: predtim ? predtim.id : noveId() };
     zapisSouhlas(souhlas);
     // bez platné předchozí volby se uklízí taky (mohly zůstat staré cookies)
     if (m === 0 && (!predtim || predtim.m === 1)) odvolejMarketing();
@@ -345,7 +347,6 @@
   if (!lista) return;
   var zakladni = lista.querySelector('.cookie-akce--lista');
   var nastaveni = lista.querySelector('.cookie-nastaveni');
-  var prepinacA = lista.querySelector('input[name="a"]');
   var prepinacM = lista.querySelector('input[name="m"]');
 
   // Lišta je fixní dole. Dokud je vidět, dostane stránka dole stejně
@@ -362,7 +363,6 @@
     nastaveni.hidden = !kategorie;
     lista.classList.toggle('cookie-lista--nastaveni', kategorie);
     if (kategorie) {
-      prepinacA.checked = !!(souhlas && souhlas.a);
       prepinacM.checked = !!(souhlas && souhlas.m);
     }
     vyskaListy();
@@ -377,12 +377,13 @@
     var akce = tlacitko.getAttribute('data-consent');
     if (akce === 'nastavit') {
       ukazListu('nastaveni');
-      prepinacA.focus();
+      prepinacM.focus();
       return;
     }
-    if (akce === 'vse') ulozVolbu(1, 1);
+    // analytické cookies nepoužíváme, a je vždy 0
+    if (akce === 'vse') ulozVolbu(0, 1);
     else if (akce === 'nic') ulozVolbu(0, 0);
-    else ulozVolbu(prepinacA.checked ? 1 : 0, prepinacM.checked ? 1 : 0);
+    else ulozVolbu(0, prepinacM.checked ? 1 : 0);
     ukazListu(false);
   });
 
@@ -390,7 +391,7 @@
     a.addEventListener('click', function (e) {
       e.preventDefault();
       ukazListu('nastaveni');
-      prepinacA.focus();
+      prepinacM.focus();
     });
   });
 })();
