@@ -24,6 +24,11 @@ export const PRICE_YEARLY_START = 5900;
 export const PRICE_YEARLY_PROFI = 14900;
 export const TRIAL_MINUTES = 5;
 
+// Video reference v heru (na mobilu blok pod herem). false = video se nezobrazí.
+export const VIDEO_REFERENCE = true;
+export const VIDEO_REFERENCE_CAPTION = 'Autoslužby Ander, Rychvald';
+export const VIDEO_REFERENCE_SOUND = 'Pustit se zvukem';
+
 // Právní dokumenty: na landing page jen cesta, Netlify přesměruje
 // na stejnou cestu v portálu (_redirects se generuje při buildu).
 export const LEGAL_PAGES = [

@@ -7,31 +7,64 @@ import {
 	CTA_PRIMARY,
 	CTA_SECONDARY,
 	TRIAL_MINUTES,
+	VIDEO_REFERENCE,
+	VIDEO_REFERENCE_CAPTION,
+	VIDEO_REFERENCE_SOUND,
 } from '../config.mjs';
+import Kresba from './Kresba.astro';
 
 const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
 ---
 
-<section id="hero" class="section section--dark hero">
-	<h1>
-		<span class="hero-problem">Zmeškané hovory vás stojí zakázky.</span>
-		<span class="hero-reseni">Polapeno je zvedne za vás.</span>
-	</h1>
-	<p class="hero-claim">Od {PRICE_START} Kč měsíčně. Číslo si necháváte. Měsíční tarif bez závazku, zrušíte kdykoli.</p>
+<section id="hero" class:list={['section section--dark hero', { 'hero--video': VIDEO_REFERENCE }]}>
+	<div class="hero-text">
+		<h1>
+			<span class="hero-problem">Zmeškané hovory vás stojí zakázky.</span>
+			<span class="hero-reseni">Polapeno je zvedne za vás.</span>
+		</h1>
+		<p class="hero-claim">Od {PRICE_START} Kč měsíčně. Číslo si necháváte. Měsíční tarif bez závazku, zrušíte kdykoli.</p>
 
-	<div class="hero-cta">
-		{DEMO_READY ? (
-			<>
-				<div class="hero-demo">
-					<a class="btn btn--primary" href={demoTel}>{CTA_PRIMARY}</a>
-					<a class="hero-demo-number" href={demoTel}>{DEMO_NUMBER}</a>
-				</div>
-				<a class="btn btn--secondary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
-			</>
-		) : (
-			<a class="btn btn--primary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
-		)}
+		<div class="hero-cta">
+			{DEMO_READY ? (
+				<>
+					<div class="hero-demo">
+						<a class="btn btn--primary" href={demoTel}>{CTA_PRIMARY}</a>
+						<a class="hero-demo-number" href={demoTel}>{DEMO_NUMBER}</a>
+					</div>
+					<a class="btn btn--secondary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
+				</>
+			) : (
+				<a class="btn btn--primary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
+			)}
+		</div>
+
+		<p class="note">{TRIAL_MINUTES} minut volání zdarma. Bez zadání karty.</p>
 	</div>
 
-	<p class="note">{TRIAL_MINUTES} minut volání zdarma. Bez zadání karty.</p>
+	<!-- Video reference (DESIGN.md §4, výjimka). Na desktopu vpravo v heru, na mobilu
+	     blok pod ním. Bez JS náhled s nativním přehrávačem, s JS ztlumená smyčka
+	     v main.js (načte se až po load a ve viewportu). -->
+	{VIDEO_REFERENCE && (
+		<figure class="reference">
+			<div class="reference-ram">
+				<div class="reference-klip">
+					<video
+						width="720"
+						height="1280"
+						poster="/video/ander-poster.webp"
+						playsinline
+						muted
+						preload="none"
+						controls
+						aria-labelledby="reference-popisek"
+					>
+						<source src="/video/ander.mp4" type="video/mp4" />
+					</video>
+				</div>
+				<Kresba typ="ramecek" seed={41} staticka />
+				<button type="button" class="btn btn--secondary reference-zvuk" hidden>{VIDEO_REFERENCE_SOUND}</button>
+			</div>
+			<figcaption id="reference-popisek">{VIDEO_REFERENCE_CAPTION}</figcaption>
+		</figure>
+	)}
 </section>

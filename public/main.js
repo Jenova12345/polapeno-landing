@@ -46,6 +46,69 @@
   });
 })();
 
+// Video reference v heru. Bez JS zůstane náhled s nativním přehrávačem.
+// S JS: ztlumená smyčka bez ovládání, která se začne načítat až po události
+// load a až když je video poblíž viewportu; mimo viewport se pozastaví.
+// S prefers-reduced-motion, se šetřením dat, nebo když prohlížeč přehrání
+// odmítne (iOS v úsporném režimu), zůstane náhled a tlačítko „Pustit se zvukem“.
+(function () {
+  var video = document.querySelector('.reference video');
+  var tlacitko = document.querySelector('.reference-zvuk');
+  if (!video || !tlacitko) return;
+
+  video.controls = false;
+  video.muted = true;
+  video.loop = true;
+  tlacitko.hidden = false;
+
+  var seZvukem = false;
+
+  // play() vrací promise; odmítnutí (autoplay zakázán, přerušení pauzou)
+  // se jen spolkne, náhled a tlačítko zůstanou
+  function hraj() {
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  tlacitko.addEventListener('click', function () {
+    seZvukem = true;
+    video.muted = false;
+    video.loop = false;
+    video.currentTime = 0;
+    video.controls = true;
+    tlacitko.hidden = true;
+    video.focus();
+    hraj();
+  });
+
+  var setriData = navigator.connection && navigator.connection.saveData;
+  if (setriData) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  function sleduj() {
+    var observer = new IntersectionObserver(function (entries) {
+      if (seZvukem) {
+        observer.disconnect();
+        return;
+      }
+      if (entries[entries.length - 1].isIntersecting) hraj();
+      else video.pause();
+    }, { rootMargin: '200px 0px' });
+    observer.observe(video);
+  }
+
+  // po load ještě počkat na volnou chvíli prohlížeče, ať stahování videa
+  // nekonkuruje dokreslení stránky
+  function poLoad() {
+    if ('requestIdleCallback' in window) requestIdleCallback(sleduj, { timeout: 2000 });
+    else setTimeout(sleduj, 200);
+  }
+
+  if (document.readyState === 'complete') poLoad();
+  else window.addEventListener('load', poLoad);
+})();
+
 // Atribuce odkazů do portálu, cookie souhlas a Meta Pixel.
 // Odkazy s data-atribuce vedou na PORTAL_START_URL i bez JS, tady se k nim
 // jen přidají UTM parametry, pp_ref a pp_lp. Souhlas (pp_consent) má formát

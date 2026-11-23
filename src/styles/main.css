@@ -328,6 +328,148 @@ h3 {
   }
 }
 
+/* Hero — video reference (DESIGN.md §4, výjimka) */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* mobil: samostatný blok pod textem hera, na stejném tmavém pozadí */
+.reference {
+  align-self: center;
+  width: min(78vw, 300px);
+  margin-top: 2rem;
+}
+
+/* rámeček z rough.js přesahuje o 20 px na každou stranu (čáry 12 px od videa) */
+.reference-ram {
+  position: relative;
+}
+
+.reference-klip {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.reference-klip video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kresba--ramecek {
+  position: absolute;
+  inset: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  pointer-events: none;
+}
+
+.reference-zvuk {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark-bg);
+  color: var(--paper);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.reference-zvuk[hidden] {
+  display: none;
+}
+
+.reference figcaption {
+  margin-top: 1.75rem;
+  font-size: var(--fs-small);
+  text-align: center;
+}
+
+/* desktop: hero ve dvou sloupcích, video vpravo svisle na středu textového bloku */
+@media (min-width: 1024px) {
+  .hero--video {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px; /* video 300 + přesah rámečku vpravo */
+    align-items: center;
+    column-gap: 3rem;
+  }
+
+  .hero--video .reference {
+    width: 300px;
+    margin: 0 20px 0 0;
+  }
+}
+
+/* Křídové kresby s videem: na tabletu jen za textem hera (video je pod ním),
+   na desktopu se celá kresba nahradí dvěma výřezy ze stejného obrázku:
+   auto a pod ním klíč s telefonem, v prázdném místě mezi claimem a videem.
+   Do videa ani rámečku nezasahují. Mezi 1024 a 1199 px na ně není místo. */
+@media (min-width: 768px) {
+  .hero--video::before {
+    content: none;
+  }
+
+  .hero--video .hero-text {
+    position: relative;
+  }
+
+  .hero--video .hero-text::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -4rem -1rem 0 33%;
+    background: url('/img/hero-sketch.jpg') right center / contain no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero--video .hero-text::before {
+    content: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero--video::before,
+  .hero--video::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    right: calc(max(1rem, (100% - 72rem) / 2) + 340px + 2rem);
+    background-image: url('/img/hero-sketch.jpg');
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  /* auto: výřez 660 × 500 z [1130, 70], měřítko 0,4 */
+  .hero--video::before {
+    inset: auto;
+    right: calc(max(1rem, (100% - 72rem) / 2) + 340px + 2rem);
+    top: calc(50% + 1rem);
+    width: 264px;
+    height: 200px;
+    background-size: 768px auto;
+    background-position: -452px -28px;
+  }
+
+  /* klíč a zvonící telefon: výřez 1030 × 270 z [820, 630], měřítko 0,3 */
+  .hero--video::after {
+    top: calc(50% + 1rem + 200px + 1rem);
+    width: 309px;
+    height: 81px;
+    background-size: 576px auto;
+    background-position: -246px -189px;
+  }
+}
+
 /* §2 Tři možnosti */
 .tri-moznosti {
   display: flex;

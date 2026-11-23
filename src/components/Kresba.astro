@@ -5,7 +5,7 @@
 import rough from 'roughjs';
 
 interface Props {
-	typ: 'podtrzeni' | 'cesta' | 'cesta-svisla' | 'tecka' | 'fajfka';
+	typ: 'podtrzeni' | 'cesta' | 'cesta-svisla' | 'tecka' | 'fajfka' | 'ramecek';
 	seed: number;
 	akcent?: boolean;
 	// bez animace dokreslení (main.js si kresby bez třídy .kresba nevšímá)
@@ -46,6 +46,22 @@ const tvary = {
 		viewBox: '0 0 24 20',
 		kresby: [gen.linearPath([[3, 11], [9, 17], [21, 3]], styl)],
 	}),
+	// rámeček kolem video reference: video 300 × 533 je v SVG na (20, 20),
+	// čáry 12 px od hrany videa. Každá strana je samostatná dvojitá čára
+	// (multi-stroke rough.js), která na rozích kousek přetahuje.
+	ramecek: () => {
+		const [l, h, p, d] = [8, 8, 332, 565];
+		const r = { ...styl, roughness: 2.4, bowing: 1.5, strokeWidth: 1.5, disableMultiStroke: false };
+		return {
+			viewBox: '0 0 340 573',
+			kresby: [
+				gen.line(l - 7, h + 1, p + 5, h - 1, r),
+				gen.line(p - 1, h - 7, p + 1, d + 6, r),
+				gen.line(p + 7, d, l - 4, d + 1, r),
+				gen.line(l + 1, d + 5, l - 1, h - 6, r),
+			],
+		};
+	},
 };
 
 const { viewBox, kresby } = tvary[typ]();

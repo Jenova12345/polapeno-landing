@@ -122,9 +122,38 @@ někdo nakreslil rukou. Nahrazuje původní skenované SVG kresby.
 - Kolem tlačítek.
 - Všude — pokud je rough.js na každém prvku, přestane být vidět.
 
+**Výjimka — rámeček video reference:** kolem videa v heru je rámeček
+z rough.js (viz Video reference níže). Je to jediný povolený rámeček kolem
+bloku. Dvojitá čára, která na rozích lehce přetahuje, barva papíru, statický
+(bez animace dokreslení).
+
 **Styl:** Jemný, jedna čára, ne přehnané „dětské" čmárání. Barva inkoustu
 nebo akcentu, na tmavém pozadí papír. Kresby se animují při scrollu —
 jednorázový nábíh (fade + draw), žádné opakování.
+
+### Video reference (výjimka)
+
+Jediný video obsah na stránce: krátké svislé video skutečného klienta
+(Autoslužby Ander) s vypálenými titulky. Je to doložitelná reference,
+ne testimonial vymyšlený pro web.
+
+- **Umístění:** na desktopu (od 1024 px) v heru vpravo od textu, šířka
+  300 px, poměr 9 : 16. Na mobilu samostatný blok hned pod textem hera na
+  stejném tmavém pozadí, šířka `min(78vw, 300px)`.
+- **Rámeček:** rough.js, generovaný při buildu, jen čáry (žádné detaily
+  telefonu), 12 px od hrany videa, video má zaoblené rohy.
+- **Popisek:** malým písmem, barva papíru, text v `config.mjs`. Vypnutí
+  videa = `VIDEO_REFERENCE = false`.
+- **Přehrávání:** bez JS náhled s nativním přehrávačem. S JS ztlumená
+  smyčka, která se začne stahovat až po události `load` a jen když je video
+  poblíž viewportu; mimo viewport pauza. Smyčka videa není „nekonečně
+  cyklující animace“ ve smyslu §1: je to obsah, ne dekorace, a při
+  `prefers-reduced-motion` nebo šetření dat se automaticky nespouští.
+- **Křídové kresby v heru** se kvůli videu na desktopu skládají ze dvou
+  výřezů stejného obrázku (auto, pod ním klíč a telefon) v místě mezi textem
+  a videem. Do videa ani rámečku nezasahují.
+- **Výkon:** video je v heru, výšku stránky na 1440 px nezvyšuje. Náhled
+  videa je na desktopu (a na vyšších mobilech) LCP prvkem, proto má preload.
 
 ### Ilustrace
 
@@ -190,7 +219,8 @@ a zůstane jen CTA na portál.
 
 - **Astro (statický build).** Žádný React, žádný Vue, žádné JS komponenty.
 - Styly v jednom CSS souboru. JS v jednom souboru: IntersectionObserver
-  spouští jednorázové CSS animace (dokreslení kreseb při vstupu do viewportu).
+  spouští jednorázové CSS animace (dokreslení kreseb při vstupu do viewportu)
+  a přehrávání video reference (vanilla JS, žádná knihovna).
 - **rough.js** je jediná povolená knihovna.
 - Žádné další knihovny (GSAP, Lenis, Tailwind…) se nepřidávají.
 - Nasazení na Netlify. Nasazuje **jen Tomáš**, na výslovný pokyn.
