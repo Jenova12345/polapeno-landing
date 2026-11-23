@@ -375,8 +375,14 @@ h3 {
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--dark-bg);
+  /* o třetinu menší než ostatní tlačítka a poloprůhledné, ať nesoupeří
+     s hlavním CTA; 44 px na výšku kvůli dotyku */
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-width: 1.5px;
+  background: rgb(30 27 46 / 0.6); /* --dark-bg */
   color: var(--paper);
+  font-size: var(--fs-small);
   white-space: nowrap;
   cursor: pointer;
 }
