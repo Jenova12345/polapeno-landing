@@ -254,7 +254,9 @@ h3 {
 }
 
 .hero-claim {
+  max-width: 36ch; /* aby delší claim nezasahoval do kresby vpravo */
   font-size: var(--fs-lead);
+  text-wrap: balance;
 }
 
 .hero-cta {
