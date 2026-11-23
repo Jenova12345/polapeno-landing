@@ -5,7 +5,7 @@
 import rough from 'roughjs';
 
 interface Props {
-	typ: 'podtrzeni' | 'cesta' | 'cesta-svisla' | 'tecka' | 'fajfka' | 'ramecek';
+	typ: 'podtrzeni' | 'cesta' | 'cesta-svisla' | 'tecka' | 'fajfka' | 'ramecek' | 'sipka';
 	seed: number;
 	akcent?: boolean;
 	// bez animace dokreslení (main.js si kresby bez třídy .kresba nevšímá)
@@ -60,6 +60,28 @@ const tvary = {
 				gen.line(p + 7, d, l - 4, d + 1, r),
 				gen.line(l + 1, d + 5, l - 1, h - 6, r),
 			],
+		};
+	},
+	// šipka od ručně psané poznámky k rámečku videa (desktop): jedna čára
+	// obloukem nahoru doprava a hrot; SVG má 1:1 rozměr v px (52 × 130),
+	// síla čáry stejná jako u rámečku
+	sipka: () => {
+		const body = [[3, 122], [24, 117], [38, 96], [42, 62], [49, 24]];
+		const hrot = body[body.length - 1];
+		const pred = body[body.length - 2];
+		const dx = hrot[0] - pred[0];
+		const dy = hrot[1] - pred[1];
+		const n = Math.hypot(dx, dy);
+		const kridlo = (uhel) => {
+			const c = Math.cos(uhel);
+			const sn = Math.sin(uhel);
+			const [ux, uy] = [-dx / n, -dy / n];
+			return [hrot[0] + 11 * (ux * c - uy * sn), hrot[1] + 11 * (ux * sn + uy * c)];
+		};
+		const r = { ...styl, roughness: 1.2, bowing: 1, strokeWidth: 1.5 };
+		return {
+			viewBox: '0 0 52 130',
+			kresby: [gen.curve(body, r), gen.linearPath([kridlo(0.6), hrot, kridlo(-0.6)], r)],
 		};
 	},
 };

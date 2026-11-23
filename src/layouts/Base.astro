@@ -25,6 +25,10 @@ const description = `Polapeno zvedne telefon, když nemůžete. Telefonní asist
 		<meta property="og:image" content={`${SITE_URL}/img/og-image.jpg`} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		{/* oba soubory Rubiku hned na začátku, ať se vymění v jednom kroku
+		    (jinak mezi ně vklíní písmo poznámky u videa a text hera poskočí dvakrát) */}
+		<link rel="preload" as="font" type="font/woff2" href="/fonts/rubik-latin.woff2" crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href="/fonts/rubik-latin-ext.woff2" crossorigin />
 		{/* náhled video reference je v heru (na mobilu hned pod ním) a bývá LCP prvkem */}
 		{VIDEO_REFERENCE && <link rel="preload" as="image" href="/video/ander-poster.webp" type="image/webp" fetchpriority="high" />}
 		<script src="/main.js" defer></script>

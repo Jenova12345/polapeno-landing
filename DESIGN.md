@@ -94,6 +94,14 @@ Kandidáti (rozhodne se podle toho, jak vypadají s českými znaky a s názvem
 - Řádkování dostatečné pro čitelnost na mobilu (1.3–1.5 u nadpisů, 1.6+ u těla).
 - Konkrétní px hodnoty se definují s hotovým fontem — záleží na jeho metrikách.
 
+**Výjimka — ručně psaná poznámka u video reference:** jediné místo na webu,
+kde je jiné písmo než Rubik. Krátká poznámka „Reference od zákazníka“ u videa
+v heru, jen na desktopu od 1200 px. Písmo Caveat (OFL), self-hosted woff2
+ořezané jen na znaky poznámky (pod 10 kB), načítá se jen tam, kde je poznámka
+vidět. Žádný jiný text na stránce ručně psaný být nesmí — dvě „kreativní“
+písma vedle sebe by byla přesně ten znak generované stránky, před kterým
+tahle kapitola varuje.
+
 **Logo „Polapeno":** Textové logo v hlavním fontu, váha black (900). Žádný
 symbol, žádná ikonka. Pokud se časem udělá skutečné logo, nahradí se.
 
@@ -127,6 +135,11 @@ z rough.js (viz Video reference níže). Je to jediný povolený rámeček kolem
 bloku. Dvojitá čára, která na rozích lehce přetahuje, barva papíru, statický
 (bez animace dokreslení).
 
+**Výjimka — šipka od poznámky k videu:** jedna zakřivená čára s hrotem od
+ručně psané poznámky k rámečku video reference (desktop od 1200 px).
+Stejná barva a síla čáry jako rámeček, dokreslí se jednou podle pravidla
+níže. Žádné další šipky na stránce.
+
 **Styl:** Jemný, jedna čára, ne přehnané „dětské" čmárání. Barva inkoustu
 nebo akcentu, na tmavém pozadí papír. Kresby se animují při scrollu —
 jednorázový nábíh (fade + draw), žádné opakování.
@@ -149,9 +162,13 @@ ne testimonial vymyšlený pro web.
   poblíž viewportu; mimo viewport pauza. Smyčka videa není „nekonečně
   cyklující animace“ ve smyslu §1: je to obsah, ne dekorace, a při
   `prefers-reduced-motion` nebo šetření dat se automaticky nespouští.
-- **Křídové kresby v heru** se kvůli videu na desktopu skládají ze dvou
-  výřezů stejného obrázku (auto, pod ním klíč a telefon) v místě mezi textem
-  a videem. Do videa ani rámečku nezasahují.
+- **Poznámka:** na desktopu od 1200 px ručně psané „Reference od zákazníka“
+  vlevo dole od videa se šipkou k rámečku (výjimky v §3 a výše). Jediná
+  ručně psaná poznámka na webu, jen u video reference. Pod 1200 px místo ní
+  popisek „Reference od zákazníka · Autoslužby Ander, Rychvald“.
+- **Křídové kresby v heru:** na desktopu od 1200 px z obrázku zůstává jen
+  výřez s autem mezi claimem a videem (klíč a telefon nahradila poznámka).
+  Do videa, rámečku ani poznámky nezasahuje.
 - **Výkon:** video je v heru, výšku stránky na 1440 px nezvyšuje. Náhled
   videa je na desktopu (a na vyšších mobilech) LCP prvkem, proto má preload.
 

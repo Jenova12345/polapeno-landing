@@ -28,6 +28,10 @@ export const TRIAL_MINUTES = 5;
 export const VIDEO_REFERENCE = true;
 export const VIDEO_REFERENCE_CAPTION = 'Autoslužby Ander, Rychvald';
 export const VIDEO_REFERENCE_SOUND = 'Pustit se zvukem';
+// Ručně psaná poznámka u videa (desktop od 1200 px; pod tím je text na začátku
+// popisku). Písmo public/fonts/caveat-poznamka.woff2 je ořezané jen na znaky
+// tohoto textu: při změně textu je potřeba písmo znovu ořezat (pyftsubset).
+export const VIDEO_REFERENCE_NOTE = 'Reference od zákazníka';
 
 // Právní dokumenty: na landing page jen cesta, Netlify přesměruje
 // na stejnou cestu v portálu (_redirects se generuje při buildu).

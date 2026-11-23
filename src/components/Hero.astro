@@ -10,6 +10,7 @@ import {
 	VIDEO_REFERENCE,
 	VIDEO_REFERENCE_CAPTION,
 	VIDEO_REFERENCE_SOUND,
+	VIDEO_REFERENCE_NOTE,
 } from '../config.mjs';
 import Kresba from './Kresba.astro';
 
@@ -63,8 +64,11 @@ const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
 				</div>
 				<Kresba typ="ramecek" seed={41} staticka />
 				<button type="button" class="btn btn--secondary reference-zvuk" hidden>{VIDEO_REFERENCE_SOUND}</button>
+				<!-- ručně psaná poznámka se šipkou, jen na desktopu od 1200 px -->
+				<p class="reference-poznamka">{VIDEO_REFERENCE_NOTE}</p>
+				<Kresba typ="sipka" seed={43} />
 			</div>
-			<figcaption id="reference-popisek">{VIDEO_REFERENCE_CAPTION}</figcaption>
+			<figcaption id="reference-popisek"><span class="reference-predpona">{VIDEO_REFERENCE_NOTE} ·</span> <span class="reference-jmeno">{VIDEO_REFERENCE_CAPTION}</span></figcaption>
 		</figure>
 	)}
 </section>

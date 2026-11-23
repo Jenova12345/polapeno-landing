@@ -397,6 +397,12 @@ h3 {
   text-align: center;
 }
 
+/* na mobilu se popisek láme jen za tečkou, jméno servisu zůstane pohromadě */
+.reference-predpona,
+.reference-jmeno {
+  white-space: nowrap;
+}
+
 /* desktop: hero ve dvou sloupcích, video vpravo svisle na středu textového bloku */
 @media (min-width: 1024px) {
   .hero--video {
@@ -413,9 +419,9 @@ h3 {
 }
 
 /* Křídové kresby s videem: na tabletu jen za textem hera (video je pod ním),
-   na desktopu se celá kresba nahradí dvěma výřezy ze stejného obrázku:
-   auto a pod ním klíč s telefonem, v prázdném místě mezi claimem a videem.
-   Do videa ani rámečku nezasahují. Mezi 1024 a 1199 px na ně není místo. */
+   na desktopu od 1200 px jen výřez s autem v prázdném místě mezi claimem
+   a videem (klíč a telefon nahradila ručně psaná poznámka se šipkou).
+   Do videa ani rámečku nezasahuje. Mezi 1024 a 1199 px na kresby není místo. */
 @media (min-width: 768px) {
   .hero--video::before {
     content: none;
@@ -442,37 +448,69 @@ h3 {
   }
 }
 
+/* Ručně psaná poznámka u videa (DESIGN.md §3 a §4, výjimka). Písmo je
+   ořezané jen na znaky poznámky a načte se, jen když je poznámka vidět
+   (display: none pod 1200 px font nestáhne). */
+@font-face {
+  font-family: 'Caveat Poznamka';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/caveat-poznamka.woff2') format('woff2');
+}
+
+.reference-poznamka,
+.kresba--sipka {
+  display: none;
+}
+
 @media (min-width: 1200px) {
-  .hero--video::before,
-  .hero--video::after {
+  /* auto: výřez 660 × 500 z [1130, 70], měřítko 0,4 */
+  .hero--video::before {
     content: '';
     position: absolute;
     z-index: -1;
-    right: calc(max(1rem, (100% - 72rem) / 2) + 340px + 2rem);
-    background-image: url('/img/hero-sketch.jpg');
-    background-repeat: no-repeat;
-    opacity: 0.2;
-    pointer-events: none;
-  }
-
-  /* auto: výřez 660 × 500 z [1130, 70], měřítko 0,4 */
-  .hero--video::before {
     inset: auto;
     right: calc(max(1rem, (100% - 72rem) / 2) + 340px + 2rem);
     top: calc(50% + 1rem);
     width: 264px;
     height: 200px;
-    background-size: 768px auto;
-    background-position: -452px -28px;
+    background: url('/img/hero-sketch.jpg') -452px -28px / 768px auto no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
   }
 
-  /* klíč a zvonící telefon: výřez 1030 × 270 z [820, 630], měřítko 0,3 */
-  .hero--video::after {
-    top: calc(50% + 1rem + 200px + 1rem);
-    width: 309px;
-    height: 81px;
-    background-size: 576px auto;
-    background-position: -246px -189px;
+  /* na desktopu je „Reference od zákazníka“ v poznámce, ne v popisku */
+  .reference-predpona {
+    display: none;
+  }
+
+  /* vlevo dole od videa; pevná šířka a výška, takže výměna písma nic
+     neposune (CLS), pravý okraj navazuje na začátek šipky */
+  .reference-poznamka {
+    display: block;
+    position: absolute;
+    top: calc(100% - 0.5rem);
+    right: calc(100% + 80px);
+    width: 16rem;
+    height: 2.5rem;
+    font-family: 'Caveat Poznamka', cursive;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 2.5rem;
+    text-align: right;
+    white-space: nowrap;
+    transform: rotate(-4deg);
+    transform-origin: right center;
+  }
+
+  /* šipka od konce poznámky obloukem nahoru k levé straně rámečku */
+  .kresba--sipka {
+    display: block;
+    right: calc(100% + 24px);
+    bottom: -20px;
+    width: 52px;
+    height: 130px;
   }
 }
 
