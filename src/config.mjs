@@ -54,4 +54,7 @@ export const PORTAL_REDIRECTS = [
 export const CAMPAIGN_REDIRECTS = [
 	// SMS z Meta lead formulářů
 	{ path: '/fb', to: '/?utm_source=facebook&utm_medium=leadform&utm_campaign=lead-listopad&utm_content=sms' },
+	// odkazy z profilů na sociálních sítích (organické, ne reklama)
+	{ path: '/ig', to: '/?utm_source=instagram&utm_medium=organic&utm_campaign=profil' },
+	{ path: '/facebook', to: '/?utm_source=facebook&utm_medium=organic&utm_campaign=profil' },
 ];
