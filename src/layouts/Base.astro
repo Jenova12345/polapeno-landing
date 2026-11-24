@@ -4,8 +4,19 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieLista from '../components/CookieLista.astro';
 import { SITE_NAME, SITE_TAGLINE, SITE_URL, PRICE_START, META_PIXEL_ID, CONSENT_API_URL, VIDEO_REFERENCE } from '../config.mjs';
+import { kanonickaUrl } from '../lib/kanonicka.mjs';
 
-const title = `${SITE_NAME}, ${SITE_TAGLINE}`;
+interface Props {
+	// vlastní titulek stránky celý, bez oddělovačů (jinak název a tagline)
+	titulek?: string;
+	// stránka mimo vyhledávače (404): noindex a bez canonical
+	noindex?: boolean;
+}
+
+const { titulek, noindex = false } = Astro.props;
+const title = titulek ?? `${SITE_NAME}, ${SITE_TAGLINE}`;
+// stránky jsou statické, Astro.url.pathname je cesta z buildu, nikdy s query
+const canonical = kanonickaUrl(Astro.url.pathname);
 const description = `Polapeno zvedne telefon, když nemůžete. Telefonní asistent pro autoservisy od ${PRICE_START} Kč měsíčně.`;
 ---
 
@@ -18,9 +29,10 @@ const description = `Polapeno zvedne telefon, když nemůžete. Telefonní asist
 		<link rel="icon" href="/favicon.ico" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:url" content={SITE_URL} />
+		<meta property="og:url" content={noindex ? SITE_URL + '/' : canonical} />
 		<meta property="og:type" content="website" />
 		<meta property="og:image" content={`${SITE_URL}/img/og-image.jpg`} />
 		<meta property="og:image:width" content="1200" />
@@ -29,8 +41,8 @@ const description = `Polapeno zvedne telefon, když nemůžete. Telefonní asist
 		    (jinak mezi ně vklíní písmo poznámky u videa a text hera poskočí dvakrát) */}
 		<link rel="preload" as="font" type="font/woff2" href="/fonts/rubik-latin.woff2" crossorigin />
 		<link rel="preload" as="font" type="font/woff2" href="/fonts/rubik-latin-ext.woff2" crossorigin />
-		{/* náhled video reference je v heru (na mobilu hned pod ním) a bývá LCP prvkem */}
-		{VIDEO_REFERENCE && <link rel="preload" as="image" href="/video/ander-poster.webp" type="image/webp" fetchpriority="high" />}
+		{/* náhled video reference je v heru úvodní stránky (na mobilu hned pod ním) a bývá LCP prvkem */}
+		{VIDEO_REFERENCE && Astro.url.pathname === '/' && <link rel="preload" as="image" href="/video/ander-poster.webp" type="image/webp" fetchpriority="high" />}
 		<script src="/main.js" defer></script>
 	</head>
 	<body data-pixel={META_PIXEL_ID} data-consent-api={CONSENT_API_URL}>

@@ -578,6 +578,20 @@ h3 {
   }
 }
 
+/* 404 */
+.nenalezeno {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 60vh;
+}
+
+.section.nenalezeno h1 {
+  font-size: var(--fs-h2);
+}
+
 /* §2 Tři možnosti */
 .tri-moznosti {
   display: flex;
