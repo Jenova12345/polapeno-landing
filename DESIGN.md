@@ -175,6 +175,7 @@ ne testimonial vymyšlený pro web.
   Do videa, rámečku ani poznámky nezasahuje.
 - **Výkon:** video je v heru, výšku stránky na 1440 px nezvyšuje. Náhled
   videa je na desktopu (a na vyšších mobilech) LCP prvkem, proto má preload.
+  LCP na mobilu do 2,0 s (výjimka v §6).
 
 ### Ilustrace
 
@@ -230,6 +231,10 @@ a zůstane jen CTA na portál.
 - Mezery jen ze škály — žádné náhodné hodnoty.
 - Stránka na 1440×900 pod **4650 px** celkové výšky.
 - LCP pod **1,5 s**, CLS pod **0,02**.
+  - Výjimka pro video referenci: na mobilu (Lighthouse, mobilní profil)
+    smí být LCP do **2,0 s**. Náhled videa je tam v prvním viewportu a je
+    LCP prvkem; ani menší náhled (20 kB) se pod 1,5 s nedostane. Na desktopu
+    limit 1,5 s platí beze změny.
 - Musí fungovat na **1440 i 360 px**, bez JS, a s `prefers-reduced-motion`.
 - Ceny, URL, texty CTA, demo číslo: vše jen v **jednom konfiguračním souboru**.
   Vypnout sekci = jeden `false`.
