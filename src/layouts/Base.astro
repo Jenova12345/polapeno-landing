@@ -3,7 +3,7 @@ import '../styles/main.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieLista from '../components/CookieLista.astro';
-import { SITE_NAME, SITE_TAGLINE, SITE_URL, PRICE_START, META_PIXEL_ID, CONSENT_API_URL, VIDEO_REFERENCE } from '../config.mjs';
+import { SITE_NAME, SITE_TAGLINE, SITE_URL, META_DESCRIPTION, META_PIXEL_ID, CONSENT_API_URL, VIDEO_REFERENCE } from '../config.mjs';
 import { kanonickaUrl } from '../lib/kanonicka.mjs';
 
 interface Props {
@@ -17,7 +17,7 @@ const { titulek, noindex = false } = Astro.props;
 const title = titulek ?? `${SITE_NAME}, ${SITE_TAGLINE}`;
 // stránky jsou statické, Astro.url.pathname je cesta z buildu, nikdy s query
 const canonical = kanonickaUrl(Astro.url.pathname);
-const description = `Polapeno zvedne telefon, když nemůžete. Telefonní asistent pro autoservisy od ${PRICE_START} Kč měsíčně.`;
+const description = META_DESCRIPTION;
 ---
 
 <!doctype html>

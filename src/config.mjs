@@ -12,6 +12,8 @@ export const DEMO_READY = false;
 export const DEMO_NUMBER = '+420 000 000 000';
 export const PRICE_START = 590;
 export const PRICE_PROFI = 1490;
+// Meta description (120–155 znaků; jen tvrzení, která jsou na stránce). NÁVRH, čeká na schválení.
+export const META_DESCRIPTION = `Telefonní asistent pro autoservisy. Nezvednuté hovory vezme za vás a zapíše poptávku. Číslo si necháte, tarif od ${PRICE_START} Kč měsíčně bez závazku.`;
 export const CTA_PRIMARY = 'Zavolejte si asistenta';
 export const CTA_SECONDARY = 'Vyzkoušet zdarma';
 export const CALLS_START = 60;
