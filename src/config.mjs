@@ -8,8 +8,10 @@ export const CONTACT_EMAIL = 'info@polapeno.cz';
 export const CONSENT_API_URL = 'https://app.polapeno.cz/api/consent';
 // Meta Pixel, načte se jen s marketingovým souhlasem; prázdné = vypnuto
 export const META_PIXEL_ID = '2840626756307794';
-export const DEMO_READY = false;
-export const DEMO_NUMBER = '+420 000 000 000';
+export const DEMO_READY = true;
+export const DEMO_NUMBER = '+420 910 920 254';
+// věta s demo číslem pod hlavním CTA v heru; {cislo} se nahradí odkazem tel:
+export const DEMO_TEXT = 'Nebo si asistenta rovnou vyzkoušejte: zavolejte na {cislo}.';
 export const PRICE_START = 590;
 export const PRICE_PROFI = 1490;
 // Meta description (120–155 znaků; jen tvrzení, která jsou na stránce).

@@ -3,8 +3,8 @@ import {
 	PRICE_START,
 	DEMO_READY,
 	DEMO_NUMBER,
+	DEMO_TEXT,
 	PORTAL_START_URL,
-	CTA_PRIMARY,
 	CTA_SECONDARY,
 	TRIAL_MINUTES,
 	VIDEO_REFERENCE,
@@ -15,6 +15,9 @@ import {
 import Kresba from './Kresba.astro';
 
 const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
+// číslo s nezlomitelnými mezerami, věta kolem něj z configu
+const demoCislo = DEMO_NUMBER.replace(/\s+/g, String.fromCharCode(160));
+const [demoPred, demoZa = ''] = DEMO_TEXT.split('{cislo}');
 ---
 
 <section id="hero" class:list={['section section--dark hero', { 'hero--video': VIDEO_REFERENCE }]}>
@@ -26,20 +29,15 @@ const demoTel = `tel:${DEMO_NUMBER.replace(/\s+/g, '')}`;
 		<p class="hero-claim">Od {PRICE_START} Kč měsíčně. Číslo si necháváte. Měsíční tarif bez závazku, zrušíte kdykoli.</p>
 
 		<div class="hero-cta">
-			{DEMO_READY ? (
-				<>
-					<div class="hero-demo">
-						<a class="btn btn--primary" href={demoTel}>{CTA_PRIMARY}</a>
-						<a class="hero-demo-number" href={demoTel}>{DEMO_NUMBER}</a>
-					</div>
-					<a class="btn btn--secondary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
-				</>
-			) : (
-				<a class="btn btn--primary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
-			)}
+			<a class="btn btn--primary" href={PORTAL_START_URL} data-atribuce>{CTA_SECONDARY}</a>
 		</div>
 
 		<p class="note">{TRIAL_MINUTES} minut volání zdarma. Bez zadání karty.</p>
+
+		{/* demo číslo jako druhá, méně výrazná akce pod hlavním CTA */}
+		{DEMO_READY && (
+			<p class="hero-demo">{demoPred}<a class="hero-demo-cislo" href={demoTel}>{demoCislo}</a>{demoZa}</p>
+		)}
 	</div>
 
 	<!-- Video reference (DESIGN.md §4, výjimka). Na desktopu vpravo v heru, na mobilu

@@ -332,17 +332,16 @@ h3 {
 }
 
 .hero-demo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
+  max-width: 36ch;
 }
 
-.hero-demo-number {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-black);
-  color: var(--paper);
-  text-decoration: none;
+/* číslo vytočí jedním klepnutím; vyšší plocha pro prst bez změny řádkování */
+.hero-demo-cislo {
+  display: inline-block;
+  margin-block: -0.5rem;
+  padding-block: 0.5rem;
+  color: inherit;
+  font-weight: var(--fw-bold);
   white-space: nowrap;
 }
 
